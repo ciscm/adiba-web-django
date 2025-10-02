@@ -1,0 +1,204 @@
+<nav class="flex items-center justify-between px-2 py-4 bg-gray-50 shadow">
+  <!-- Logo -->
+  <div class="flex items-center ">
+      <a href="/?lang={{ lang }}&devise={{ devise }}&token={{ token }}">
+    <img src="/media/static/images/img.png" alt="Logo" class="h-32 md:h-24 object-full-cover">
+          </a>
+  </div>
+
+  <!-- Menu desktop centré -->
+  <ul class="hidden md:flex space-x-8 text-gray-800 font-bold mx-auto">
+    <li><a href="/?lang={{ lang }}&token={{ token }}">{{ t.home }}</a></li>
+    <li><a href="/catalogue?lang={{ lang }}&page=1&token={{ token }}">{{ t.selection }}</a></li>
+    <li><a href="/about-us?lang={{ lang }}&token={{ token }}">{{ t.about }}</a></li>
+    <li><a href="/faqs?lang={{ lang }}&token={{ token }}">{{ t.faq }}</a></li>
+    <li><a href="/contact?lang={{ lang }}&token={{ token }}">{{ t.contact }}</a></li>
+    <li><a href="/temoignage?lang={{ lang }}&token={{ token }}">{{ t.testimonials }}</a></li>
+  </ul>
+
+  <!-- Actions + Toggle -->
+  <div class="flex items-center space-x-4">
+    <!-- Actions visibles partout -->
+    <div class="flex items-center space-x-4">
+      <a href="https://wa.me/+212660758860" class="relative text-gray-800 hover:text-gray-600 group">
+        <svg class="w-6 h-6 text-green-500" fill="currentColor" viewBox="0 0 24 24">
+  <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.6 5.85L0 24l6.38-1.63A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 21.5a9.5 9.5 0 01-4.88-1.36l-.35-.22-3.79.97.99-3.7-.23-.37A9.5 9.5 0 1121.5 12 9.5 9.5 0 0112 21.5zm5.05-7.13c-.27-.14-1.6-.79-1.84-.88-.24-.09-.42-.14-.6.14s-.69.88-.85 1.06c-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.16-1.33-.8-.71-1.34-1.6-1.5-1.87-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.6-1.44-.82-1.97-.22-.52-.44-.45-.6-.46-.16-.01-.34-.01-.52-.01s-.48.07-.73.34c-.25.27-.95.92-.95 2.25s.97 2.61 1.1 2.79c.14.18 1.9 2.9 4.62 4.07.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.27-.18-.57-.32z"/>
+</svg>
+
+        <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
+               bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0
+               group-hover:opacity-100 transition-opacity">
+           Whatsapp
+        </span>
+      </a>
+      <!-- Recherche -->
+      <button class="relative text-gray-800 hover:text-gray-600 group">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+             viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round"
+                d="M21 21l-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/>
+        </svg>
+        <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
+               bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0
+               group-hover:opacity-100 transition-opacity">
+           Recherche
+        </span>
+      </button>
+
+
+      <a class="relative text-gray-800 hover:text-gray-600 group"
+   href="/panier?token={{ token }}&devise={{ devise }}&lang={{ lang }}">
+    <!-- Icône du panier -->
+    <svg stroke="currentColor" fill="none" stroke-width="2" viewBox="0 0 24 24"
+         stroke-linecap="round" stroke-linejoin="round"
+         class="h-6 w-6 text-[#989898]" height="1em" width="1em"
+         xmlns="http://www.w3.org/2000/svg">
+        <circle cx="8" cy="21" r="1"></circle>
+        <circle cx="19" cy="21" r="1"></circle>
+        <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+    </svg>
+
+    <!-- Badge du nombre de produits -->
+    {% if nb_produit_panier > 0 %}
+    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs
+                 font-bold rounded-full h-5 w-5 flex items-center
+                 justify-center shadow">
+        {{ nb_produit_panier }}
+    </span>
+    {% endif %}
+
+    <!-- Tooltip -->
+    <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
+               bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0
+               group-hover:opacity-100 transition-opacity">
+       Panier
+    </span>
+</a>
+
+
+        <form method="get" class="hidden md:block flex items-center space-x-2">
+
+    <select name="devise" onchange="this.form.submit()"
+            class="border border-gray-300 rounded px-3 py-2 text-gray-800 text-sm ">
+        <option value="euro" {% if devise == 'euro' %}selected{% endif %}>EUR €</option>
+        <option value="dollar" {% if devise == 'dollar' %}selected{% endif %}>USD $</option>
+        <option value="pound" {% if devise == 'pound' %}selected{% endif %}>GBP £</option>
+        <option value="dhs" {% if devise == 'dhs' %}selected{% endif %}>MAD د.م</option>
+        <option value="dollar-canadien" {% if devise == 'dollar-canadien' %}selected{% endif %}>CAD C$</option>
+    </select>
+
+    <select name="lang" onchange="this.form.submit()"
+            class="border border-gray-300 rounded px-3 py-2 text-gray-800 text-sm ">
+        <option value="fr" {% if lang == 'fr' %}selected{% endif %}>Fr</option>
+        <option value="en" {% if lang == 'en' %}selected{% endif %}>Eng</option>
+    </select>
+
+    {% for key, value in request.GET.items %}
+        {% if key != 'devise' and key != 'lang' %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endif %}
+    {% endfor %}
+
+</form>
+
+
+    </div>
+
+    <button id="toggle-menu"
+            class="md:hidden focus:outline-none text-gray-800">
+      <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+           viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round"
+              d="M4 6h16M4 12h16M4 18h16"/>
+      </svg>
+    </button>
+  </div>
+</nav>
+
+<!-- Pop-up menu mobile -->
+<div id="mobile-menu" class="fixed inset-0 flex justify-start z-50 hidden bg-black/50 ">
+
+  <!-- Contenu du pop-up -->
+  <div class="relative w-2/3 h-full bg-white flex flex-col items-start py-10 px-6 space-y-6 overflow-y-auto">
+
+    <!-- Titre -->
+    <h1 class="w-full text-2xl font-extrabold tracking-wide mb-4" style="color:#C09B6F;font-family: 'Cinzel', serif;"">
+      Adiba Interiors
+    </h1>
+    <!-- Bouton fermer (en dehors du pop-up) -->
+  <button id="close-menu" class="absolute top-4 right-4 text-gray-800 z-50">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+    </svg>
+  </button>
+
+    <!-- Sélecteurs Langue & Devise -->
+    <form method="get" class="flex w-full justify-between mb-6 space-x-2">
+
+    <!-- Sélecteur Devise -->
+    <select name="devise" onchange="this.form.submit()"
+            class="border border-gray-300 rounded px-3 py-2 text-gray-800 text-sm w-1/2">
+        <option value="euro" {% if devise == 'euro' %}selected{% endif %}>EUR €</option>
+        <option value="dollar" {% if devise == 'dollar' %}selected{% endif %}>USD $</option>
+        <option value="pound" {% if devise == 'pound' %}selected{% endif %}>GBP £</option>
+        <option value="dhs" {% if devise == 'dhs' %}selected{% endif %}>MAD د.م</option>
+        <option value="dollar-canadien" {% if devise == 'dollar-canadien' %}selected{% endif %}>CAD C$</option>
+    </select>
+
+    <!-- Sélecteur Langue -->
+    <select name="lang" onchange="this.form.submit()"
+            class="border border-gray-300 rounded px-3 py-2 text-gray-800 text-sm w-1/2">
+        <option value="fr" {% if lang == 'fr' %}selected{% endif %}>Fr</option>
+        <option value="en" {% if lang == 'en' %}selected{% endif %}>Eng</option>
+    </select>
+
+    <!-- Conserver les autres paramètres GET -->
+    {% for key, value in request.GET.items %}
+        {% if key != 'devise' and key != 'lang' %}
+            <input type="hidden" name="{{ key }}" value="{{ value }}">
+        {% endif %}
+    {% endfor %}
+
+</form>
+
+    <!-- Liens du menu mobile -->
+    <ul class="w-full space-y-4 ">
+      <li class="w-full   rounded-lg p-4 hover:bg-gray-100 transition border-b border-gray-300"  >
+        <a href="/?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="block text-gray-900 font-semibold text-base">{{ t.home }}</a>
+      </li>
+      <li class="w-full   rounded-lg p-4 hover:bg-gray-100 transition border-b border-gray-300" >
+        <a href="/catalogue?lang={{ lang }}&page=1&devise={{ devise }}&token={{ token }}" class="block text-gray-900 font-semibold text-base">{{ t.selection }}</a>
+      </li>
+      <li class="w-full   rounded-lg p-4 hover:bg-gray-100 transition border-b border-gray-300" >
+        <a href="/about-us?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="block text-gray-900 font-semibold text-base">{{ t.about }}</a>
+      </li>
+      <li class="w-full   rounded-lg p-4 hover:bg-gray-100 transition border-b border-gray-300" >
+        <a href="/faqs?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="block text-gray-900 font-semibold text-base">{{ t.faq }}</a>
+      </li>
+      <li class="w-full   rounded-lg p-4 hover:bg-gray-100 transition border-b border-gray-300" >
+        <a href="/contact?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="block text-gray-900 font-semibold text-base">{{ t.contact }}</a>
+      </li>
+      <li class="w-full   rounded-lg p-4 hover:bg-gray-100 transition border-b border-gray-300" >
+        <a href="/temoignage?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="block text-gray-900 font-semibold text-base">{{ t.testimonials }}</a>
+      </li>
+    </ul>
+  </div>
+
+
+
+</div>
+
+<script>
+  const toggleBtn = document.getElementById("toggle-menu");
+  const closeBtn = document.getElementById("close-menu");
+  const mobileMenu = document.getElementById("mobile-menu");
+
+  toggleBtn.addEventListener("click", () => {
+    mobileMenu.classList.remove("hidden");
+  });
+
+  closeBtn.addEventListener("click", () => {
+    mobileMenu.classList.add("hidden");
+  });
+</script>
+

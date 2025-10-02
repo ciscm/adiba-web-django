@@ -1,0 +1,261 @@
+{
+  "fr": {
+    "recherche" : {
+      "placeholder" : "Rechercher un article, une selection ou une sous selection"
+    },
+    "home": "Accueil",
+    "selection": "Sélection",
+    "about": "À propos",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "testimonials": "Témoignages",
+    "search": "Recherche",
+    "cart": "Panier",
+    "page_post_message_succes" : {
+      "title" : "Votre message a bien été envoyé",
+      "intro" : "Nous vous recontacterons d'ici peu",
+      "btn" : "Revenir à l'accueil"
+    },
+    "page_all_promotions" : {
+      "title" : "Nos Promotions",
+      "empty" : "Aucune promotions disponible pour le moment",
+      "intro": "Découvrez toutes nos offres exclusives et profitez de réductions exceptionnelles sur une sélection de produits. Ne manquez pas l’occasion de faire de bonnes affaires avant la fin des promotions !"
+    },
+    "page_catalogue" : {
+      "title" : "Nos Selections",
+      "intro" : "Mobilier sur mesure, décoration raffinée, art de recevoir : le savoir-faire marocain dans chaque détail\n",
+      "btn_voir_selection" : "Voir la selection"
+    },
+    "page_produit" : {
+       "reference": "Référence",
+       "prix": "Prix",
+       "materiaux": "Matériaux",
+       "variete": "Varieté",
+       "desc": "Description",
+      "similaire": {
+         "name" : "Produits Similaires",
+         "empty" : "Aucun produit similaire disponible pour le moment.",
+
+         "desc" : "Retrouvez une sélection d’articles proches de celui que vous consultez. Ces produits partagent des caractéristiques similaires et peuvent constituer une excellente alternative."
+
+      },
+      "complementaire": {
+        "name": "Produits Complémentaires",
+        "empty" : "Aucun produit complementaire disponible pour le moment.",
+        "desc": "Découvrez une sélection d’articles qui s’accordent parfaitement avec celui que vous consultez. Ces produits complémentaires enrichissent votre expérience et vous offrent plus de possibilités."
+      }
+    },
+    "page_sous_selection" : {
+      "title" : "Nos Produits",
+      "btn_ajouter" : "Ajouter"
+    },
+    "page_all_sous_selection" : {
+      "title" : "Nos Sous Selections"
+    },
+    "page_selection" : {
+      "title" : "Nos Sous Selections",
+      "btn_voir_sous_selection" : "Voir la  sous-selection",
+      "btn_voir_all_sous_selections" : " Toutes les sous selections",
+      "btn_ajouter" : "Ajouter au Panier"
+    },
+    "page_all_selections" : {
+      "title" : "Nos Selections",
+      "intro" : "Mobilier sur mesure, décoration raffinée, art de recevoir : le savoir-faire marocain dans chaque détail\n"
+    },
+    "page_temoignage" : {
+      "title": "Ce que nos clients disent de nous",
+      "intro": "Découvrez les expériences de nos clients satisfaits et laissez-vous inspirer par leurs histoires de satisfaction avec nos meubles."
+    },
+    "page_aboutus": {
+      "title": "Adiba Interiors – Une âme marocaine, une empreinte intemporelle",
+      "intro": "Chez Adiba Interiors, nous puisons notre inspiration dans le Maroc, ses couleurs chatoyantes et son héritage artisanal, pour créer des espaces qui respirent l’élégance et la convivialité. Plus qu’une simple décoration, c’est une invitation à ressentir, à partager et à vivre pleinement chaque lieu.",
+      "sublime": "Chaque pièce mérite d’être sublimée par des matières nobles, des détails soignés et une touche chaleureuse. Nos salons invitent au partage, nos arts de table transforment chaque repas en un instant précieux, et nos accessoires apportent raffinement et caractère à votre intérieur.",
+      "heritage_title": "Préserver l’Héritage du Savoir-Faire",
+      "heritage_text": "Au cœur de notre démarche, il y a un profond respect pour les artisans avec qui nous collaborons. Chaque pièce que nous sélectionnons est le fruit d’un savoir-faire transmis de génération en génération, perpétuant ainsi l'authenticité et la richesse du patrimoine marocain.",
+      "proud_text": "Nous sommes fiers de contribuer à la préservation des métiers d’art et de soutenir des artisans talentueux, véritables gardiens de traditions précieuses. À travers nos collections, nous mettons en lumière leur créativité, leur minutie et leur passion, tout en leur offrant un tremplin pour faire rayonner leur travail au-delà des frontières.",
+      "mission_title": "Notre Mission",
+      "mission_text": "Offrir plus qu’une décoration : un art de vivre, où chaque élément crée une ambiance harmonieuse et intemporelle.",
+      "values_title": "Nos Valeurs",
+      "values": [
+        "Disponibilité & écoute : Un accompagnement personnalisé",
+        "Efficacité & réactivité : Un service fluide et rapide",
+        "Accessibilité & qualité : Du beau, à prix juste"
+      ],
+      "conclusion": "Adiba Interiors, le savoir-faire dans chaque détail"
+    },
+    "page_panier" : {
+      "title" : "Panier",
+      "btn_continuez" : "Continuez",
+       "accept_terme" : "Accepter les termes d'utilisation",
+      "formulaire" : {
+        "title" : "Remplissez vos informations",
+        "intro" : "Veuillez compléter les champs ci-dessous pour finaliser votre commande et procéder au paiement.",
+        "name" : "Nom Complet",
+        "phone" : "Numéro de téléphone",
+        "preference" : "Préférence de contact",
+        "type" : "Type de client",
+        "btn" : "Valider"
+      }
+    },
+    "page_home": {
+      "desc": "Mobilier sur mesure, décoration raffinée, art de recevoir : le savoir-faire marocain dans chaque détail",
+      "btn" : "Toutes les Sélections"
+    },
+    "page_faqs" : {
+      "title": "Questions Fréquentes",
+      "intro":"Trouvez ici les réponses à vos questions les plus courantes concernant nos produits et services chez Adiba."
+    },
+    "page_contactus": {
+      "title": "Contactez-nous",
+      "description": "Vous avez une question ou besoin d'assistance ? Remplissez le formulaire ci-dessous et notre équipe vous répondra dans les plus brefs délais.",
+      "fields": {
+        "full_name": "Nom complet",
+        "email": "Via Email",
+        "phone": "Numéro de téléphone",
+        "contact_pref": "Préférence de contact",
+        "subject": {
+          "name" : "Subject",
+          "commande" : "Suivi de votre commande",
+          "produit" : "A propos d'un produit",
+          "adiba" : "A propos d'Adiba Interiors",
+          "autre": "Autre"
+        },
+        "country": "Pays",
+        "message": "Message",
+        "accept_contact": "Accepter d'être contacté par l'équipe d'Adiba interiors",
+        "submit": "Envoyer"
+      }
+    }
+  },
+  "en": {
+    "recherche": {
+      "placeholder": "Search for an item, a collection, or a sub-collection"
+    },
+    "page_all_sous_selection" : {
+      "title" : "Our Sous Selections"
+    },
+    "page_all_promotions": {
+      "title": "Our Promotions",
+      "empty": "No promotions available at the moment",
+      "intro": "Discover all our exclusive offers and enjoy exceptional discounts on a selection of products. Don’t miss the chance to grab great deals before the promotions end!"
+    },
+
+    "home": "Home",
+    "selection": "Selection",
+    "about": "About Us",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "testimonials": "Testimonials",
+    "search": "Search",
+    "cart": "Cart",
+    "page_temoignage": {
+      "title": "What Our Customers Say About Us",
+      "intro": "Discover the experiences of our satisfied customers and be inspired by their stories of satisfaction with our furniture."
+    },
+    "page_home": {
+      "desc": "Custom furniture, refined decoration, art of hosting: Moroccan craftsmanship in every detail",
+      "btn": "See All Selections"
+    },
+    "page_panier" : {
+      "title" : "Cart",
+      "btn_continuez" : "Continue",
+      "accept_terme" : "Accept the Terms of Use",
+      "formulaire" : {
+          "title" : "Fill in your information",
+          "intro" : "Please complete the fields below to finalize your order and proceed to payment.",
+          "name" : "Full Name",
+          "phone" : "Phone Number",
+          "preference" : "Contact Preference",
+          "type" : "Customer Type",
+          "btn" : "Submit"
+      }
+    },
+
+    "page_aboutus": {
+      "title": "Adiba Interiors – A Moroccan soul, a timeless signature",
+      "intro": "At Adiba Interiors, we draw inspiration from Morocco, its vibrant colors and artisanal heritage, to create spaces that breathe elegance and conviviality. More than just decoration, it’s an invitation to feel, share, and fully experience every space.",
+      "sublime": "Every room deserves to be enhanced with noble materials, thoughtful details, and a warm touch. Our living spaces invite sharing, our tableware transforms every meal into a precious moment, and our accessories bring refinement and character to your interior.",
+      "heritage_title": "Preserving the Heritage of Craftsmanship",
+      "heritage_text": "At the heart of our approach is deep respect for the artisans we work with. Every piece we select is the result of craftsmanship passed down from generation to generation, preserving authenticity and the richness of Moroccan heritage.",
+      "proud_text": "We are proud to contribute to preserving artisanal trades and supporting talented artisans, true guardians of precious traditions. Through our collections, we highlight their creativity, meticulousness, and passion, while giving them a platform to showcase their work internationally.",
+      "mission_title": "Our Mission",
+      "mission_text": "Offering more than decoration: a way of life, where every element creates a harmonious and timeless ambiance.",
+      "values_title": "Our Values",
+      "values": [
+        "Availability & listening: Personalized support",
+        "Efficiency & responsiveness: Smooth and fast service",
+        "Accessibility & quality: Beautiful, at a fair price"
+      ],
+      "conclusion": "Adiba Interiors, craftsmanship in every detail"
+    },
+    "page_faqs": {
+     "title": "Frequently Asked Questions",
+      "btn" : "Revenir à l'accueil",
+      "intro": "Find here the answers to the most common questions about our products and services at Adiba."
+    },
+    "page_post_message_succes": {
+      "title": "Your message has been sent successfully",
+      "intro": "We will get back to you shortly",
+      "btn": "Back to Home"
+    },
+    "page_catalogue" : {
+      "title" : "Our Selections",
+      "intro" : "Custom furniture, refined decoration, tableware: Moroccan craftsmanship in every detail",
+      "btn_voir_selection" : "Show selection"
+    },
+    "page_selection" : {
+      "title" : "Our Sous Selections",
+      "btn_voir_sous_selection" : "Show Sous Selection",
+      "btn_voir_all_sous_selections" : "All Sous Selections",
+      "btn_ajouter" : "Add To Cart"
+    },
+    "page_produit" : {
+      "reference": "Reference",
+      "prix": "Price",
+      "materiaux": "Materials",
+      "variete": "Variety",
+      "desc": "Description",
+      "similaire" : {
+         "name" : "Similar Products",
+         "empty" : "No similar products available at the moment",
+         "desc" : "Browse a selection of items similar to the one you’re viewing. These products share comparable features and may be a great alternative."
+
+      },
+      "complementaire": {
+         "name": "Complementary Products",
+         "empty" : "No complementary products available at the moment",
+         "desc": "Explore a selection of items that pair perfectly with the one you’re viewing. These complementary products enhance your experience and give you more options."
+      }
+
+    },
+    "page_sous_selection" : {
+      "title" : "Our Products",
+      "btn_ajouter" : "Add"
+    },
+    "page_all_selections": {
+      "title": "Our Selections",
+      "intro": "Custom furniture, refined decoration, tableware: Moroccan craftsmanship in every detail\n"
+    },
+    "page_contactus": {
+      "title": "Contact Us",
+      "description": "Do you have a question or need assistance? Fill out the form below and our team will respond as soon as possible.",
+      "fields": {
+        "full_name": "Full Name",
+        "email": "Email",
+        "phone": "Phone Number",
+        "contact_pref": "Contact Preference",
+        "subject": {
+          "name": "Subject",
+          "commande": "Order tracking",
+          "produit": "About a product",
+          "adiba": "About Adiba Interiors",
+          "autre": "Other"
+        },
+        "country": "Country",
+        "message": "Message",
+        "accept_contact": "I agree to be contacted by the Adiba interiors team",
+        "submit": "Send"
+      }
+    }
+  }
+}

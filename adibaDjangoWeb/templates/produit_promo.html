@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color:white">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex  flex-col gap-0 grow items-center justify-center px-4 "
+        style="; font-family: 'Poppins', sans-serif;">
+        <div class="flex flex-col items-center justify-center gap-10 my-10 w-full grow">
+            {% include 'messages.html' %}
+            {% include 'barre_recherche.html' %}
+            <nav class="flex items-center text-black text-sm mt-4 space-x-2">
+                <span class="font-semibold text-gray-500">Selection</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                <a href="/catalogue/promotions"><span class="font-semibold text-black">Promotions</span></a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                <a href="/catalogue/promotion/{{ produit.promotion.id}}"><span class="font-semibold text-black">{{ produit.promotion.name }}</span></a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                </svg>
+                <span class="font-semibold text-black">{{ produit.name }}</span>
+
+            </nav>
+            <div class="flex flex-col md:flex-row items-start justify-center gap-10 mt-8 w-full max-w-7xl px-4">
+
+    <!-- Image à gauche avec miniatures -->
+   <div class="flex-shrink-0 w-full md:w-1/2 flex flex-col items-center gap-4">
+    <!-- Image principale -->
+    <div class="w-104 h-46 md:h-96 overflow-hidden rounded-xl shadow-lg">
+        <img id="main-image" src="{{ produit.image }}" alt="{{ produit.name }}"
+             class="w-full h-full object-contain">
+    </div>
+
+    <!-- Miniatures avec slider horizontal -->
+    <div class="flex gap-2 mt-2 overflow-x-auto flex-nowrap pb-2">
+        <!-- Image principale comme miniature -->
+        <div class="flex-shrink-0 w-26 h-20 overflow-hidden rounded cursor-pointer border-2 border-transparent hover:border-blue-500">
+            <img src="{{ produit.image }}" alt="{{ produit.name }}"
+                 class="w-full h-full object-full-contain md:object-contain "
+                 onclick="changeImage(this.src)">
+        </div>
+
+        <!-- Images supplémentaires -->
+        {% for img in produit.image_supps %}
+        {% if img.image %}
+        <div class="flex-shrink-0 w-26 h-20 overflow-hidden rounded cursor-pointer border-2 border-transparent hover:border-blue-500">
+            <img src="{{ img.image }}" alt="{{ img.description }}"
+                 class="w-full h-full object-cover"
+                 onclick="changeImage(this.src)">
+        </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+</div>
+
+    <!-- Infos produit à droite -->
+    <div class="w-full md:w-1/2 flex flex-col gap-4">
+        <h1 class="font-bold text-4xl text-gray-900">{{ produit.name }}</h1>
+        <p class="text-gray-600 font-semibold">
+            <span class="font-bold">{{ t.page_produit.reference }} :</span>
+            {{ produit.reference }}
+        </p>
+        <p class="text-gray-600 font-semibold">
+            <span class="font-bold">{{ t.page_produit.prix }} :</span>
+            <span class="text-red-600 line-through ml-2">{{ produit.prix }}</span>
+            <br class=" md:hidden">
+            <span class="text-green-600 font-bold items-center text-xl ml-4">{{ produit.prix_promo }}</span>
+        </p>
+        <p class="text-gray-600 font-semibold"><span class="font-bold">{{ t.page_produit.materiaux }} :</span> {{ produit.materiaux }}</p>
+        <p class="text-gray-600 font-semibold"><span class="font-bold">{{ t.page_produit.variete }} :</span> {{ produit.couleur }}</p>
+        <p class="text-gray-700 leading-relaxed font-semibold"><span class="font-bold">{{ t.page_produit.desc }} :</span> {{ produit.desc }}</p>
+
+        <div class="mt-6">
+            <a href="/panier/add?lang={{ lang }}&type=pr&page={{ page }}&token={{ token }}&produit={{ produit.reference }}"
+               class="bg-black text-white px-6 py-3 rounded-full shadow-lg hover:bg-gray-800 transition">
+               {{ t.page_selection.btn_ajouter }}
+            </a>
+        </div>
+    </div>
+</div>
+
+
+            <div class="  md:block flex flex-col w-full mx-4 max-w-8xl my-24 px-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
+                    <h2 class="text-3xl font-bold">{{ t.page_produit.similaire.name }}</h2>
+
+                </div>
+                <p class="text-lg text-left mb-4 md:mb-10 md:order-2">
+                    {{ t.page_produit.similaire.desc }}
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
+                        {% for produit_s in produit.produits_similaires %}
+                            <div class="bg-white rounded-xl  border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center
+                                 hover:scale-105 transition-transform cursor-pointer w-64 h-96 bg-gray-100" style="border-color:#C09B6F">
+                                <div class="w-full h-1/2 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+                                    <img src="{{ produit_s.image }}" alt="{{ produit_s.name }}" class="w-full h-full object-cover">
+                                </div>
+                                <br>
+                                <span class="text-gray-800 font-bold text-center">{{ produit_s.name }}</span>
+                                <br>
+                                <span class="text-gray-800 font-bold text-center">{{ produit_s.prix }}</span>
+                                <br>
+                                <span><a href="/catalogue?lang={{ lang }}&page={{ page }}"
+                                    class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
+                                    {{ t.page_selection.btn_ajouter }}
+                                </a></span>
+
+                            </div>
+                    {% empty %}
+        <div class="w-full text-center text-3xl text-black font-semibold py-10">
+            {{ t.page_produit.similaire.empty }}
+        </div>
+                        {% endfor %}
+                </div>
+            </div>
+            <div class="  md:block flex flex-col w-full mx-4 max-w-8xl my-24 px-4">
+                <div class="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
+                    <h2 class="text-3xl font-bold">{{ t.page_produit.complementaire.name }}</h2>
+
+                </div>
+                <p class="text-lg text-left mb-4 md:mb-10 md:order-2">
+                    {{ t.page_produit.complementaire.desc }}
+                </p>
+
+                <div class="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
+                        {% for produit_s in produit.produits_complementaires %}
+                            <div class="bg-white rounded-xl  border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center
+                                 hover:scale-105 transition-transform cursor-pointer w-64 h-96 bg-gray-100" style="border-color:#C09B6F">
+                                <div class="w-full h-1/2 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+                                    <img src="{{ produit_s.image }}" alt="{{ produit_s.name }}" class="w-full h-full object-cover">
+                                </div>
+                                <br>
+                                <span class="text-gray-800 font-bold text-center">{{ produit_s.name }}</span>
+                                <br>
+                                <span class="text-gray-800 font-bold text-center">{{ produit_s.prix }}</span>
+                                <br>
+                                <span><a href="/catalogue?lang={{ lang }}&page={{ page }}"
+                                    class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
+                                    {{ t.page_selection.btn_ajouter }}
+                                </a></span>
+
+                            </div>
+                        {% empty %}
+        <div class="w-full text-center text-3xl text-black font-semibold py-10">
+                {{ t.page_produit.complementaire.empty }}
+        </div>
+                        {% endfor %}
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+             {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+  function changeImage(src) {
+    document.getElementById('main-image').src = src;
+  }
+</script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color:#EDE8E8">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex  flex-col gap-0 grow items-center justify-center px-4 "
+        style="; font-family: 'Poppins', sans-serif;">
+        <div class="flex flex-col items-center justify-center gap-10 my-10 w-full grow">
+             {% include 'messages.html' %}
+            {% include 'barre_recherche.html' %}
+            <!-- Image de la catégorie -->
+            <img src="{{ promotion.image }}" alt="{{ promotion.name }}" class="w-full max-w-3xl bg-transparent h-80 object-contain md:object-contain rounded-xl shadow-lg">
+            <nav class="flex items-center text-black text-sm mt-4 space-x-2">
+                <span class="font-semibold text-gray-500">Selection</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                <a href="/catalogue/promotions"><span class="font-semibold text-black">Promotions</span></a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                <span class="font-semibold text-black">{{ promotion.name }}</span>
+            </nav>
+
+            <p class=" w-1/2  text-xl text-center">{{ promotion.desc }}</p>
+            <div class="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
+                        {% for produit in produits %}
+
+                        <div class="bg-white rounded-xl border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center
+                             hover:scale-105 transition-transform cursor-pointer w-64 h-96 bg-gray-100" style="border-color:#C09B6F">
+
+                            <div class="w-full h-1/2 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+                                <a href="/catalogue/promotion/produit/{{ produit.reference }}?devise= {{ devise }}&lang={{ lang }}&token={{ token }}">
+                                <img src="{{ produit.image }}" alt="{{ produit.name }}" class="w-full h-full object-cover">
+                            </a>
+                            </div>
+
+                            <br>
+                            <span class="text-gray-800 font-bold text-center">{{ produit.name }}</span>
+                             <div class="w-40 mx-auto text-center mt-2">
+    <!-- Prix original en rouge barré, plus petit -->
+    <span class="text-red-600 line-through text-sm mr-2">{{ produit.prix }}</span>
+    <!-- Prix promo en vert, plus grand et gras -->
+    <span class="text-green-600 font-bold text-xl">{{ produit.prix_promo }}</span>
+</div>
+
+                            <br>
+                            <span>
+                            <a href="/panier/add?lang={{ lang }}&type=pr&page={{ page }}&token={{ token }}&produit={{ produit.reference }}"
+
+                                class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
+                        {{ t.page_sous_selection.btn_ajouter }}
+                            </a></span>
+
+                        </div>
+
+                        {% endfor %}
+        </div>
+
+    </main>
+
+
+
+             {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+</body>
+
+</html>

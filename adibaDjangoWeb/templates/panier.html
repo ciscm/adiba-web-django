@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors",
+      "url": "{{ request.build_absolute_uri }}"
+    }
+    </script>
+</head>
+<body>
+<div id="contenaire-parent" class="w-full mx-auto shadow-lg" style="background-color:#EDE8E8">
+    <header id="en-tete" class="sticky top-0 z-50">
+        {% include 'entete.html'%}
+    </header>
+
+    <main class="flex flex-col gap-0 grow items-center justify-center px-4"
+        style="font-family: 'Poppins', sans-serif;">
+        <div class="flex flex-col items-center justify-center gap-10 my-10 w-full grow">
+
+
+            <div class="w-full md:w-2/3 mx-auto p-6 bg-white rounded-xl shadow-lg">
+                <h1 class="font-bold text-2xl md:text-5xl text-center">🛒 {{ t.page_panier.title }}</h1>
+                {% if panier.items %}
+                <div class="space-y-4">
+
+                    {% for item in panier.items %}
+                    <div class="flex flex-col md:flex-row items-center justify-between p-4 border-b border-gray-200 gap-4">
+                        <!-- Image et infos produit -->
+                        <div class="flex items-center gap-4 w-full md:w-2/3">
+                            <img src="{{ item.image }}" alt="{{ item.name }}"
+                                 class="w-20 h-20 md:w-24 md:h-24 object-cover rounded-lg shadow">
+                            <div class="flex flex-col">
+                                <h3 class="font-semibold text-lg text-gray-800">{{ item.name }}</h3>
+                                <span class="text-gray-500 text-sm">Réf: {{ item.reference }}</span>
+
+                                {% if item.type == 'promotion' %}
+                                <div class="flex items-center gap-2 mt-1">
+                                    <span class="text-red-500 line-through text-sm">{{ item.prix_normal }}</span>
+                                    <span class="text-black font-bold text-lg">{{ item.prix_promo }} </span>
+                                </div>
+                                {% else %}
+                                <span class="text-gray-800 font-bold text-lg mt-1">{{ item.prix }} </span>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- Actions -->
+                        <div class="flex items-center gap-3 w-full md:w-auto justify-end">
+                            <!-- Quantité -->
+                            <div class="flex items-center border rounded-lg">
+                                <form method="post" class="flex items-center">
+                                    {% csrf_token %}
+                                    {% if item.type == 'promotion' %}
+                                    <a href="/panier/desincremente?lang={{ lang }}&type=pr&page={{ page }}&token={{ token }}&produit={{ item.reference }}"  class="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-l">-</a>
+                                    {% else %}
+                                    <a href="/panier/desincremente?lang={{ lang }}&type=sc&page={{ page }}&token={{ token }}&produit={{ item.reference }}"  class="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-l">-</a>
+                                    {% endif %}
+
+                                    <span class="px-3 font-semibold">{{ item.quantite }}</span>
+                                    {% if item.type == 'promotion' %}
+                                    <a href="/panier/add?lang={{ lang }}&type=pr&page={{ page }}&token={{ token }}&produit={{ item.reference }}"  class="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-l">+</a>
+                                    {% else %}
+                                    <a href="/panier/add?lang={{ lang }}&type=sc&page={{ page }}&token={{ token }}&produit={{ item.reference }}"  class="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded-l">+</a>
+                                    {% endif %}
+                                </form>
+                            </div>
+
+                            <!-- Supprimer -->
+                            <form method="post">
+                                {% csrf_token %}
+                                <button class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5-4h4m-4 0a1 1 0 00-1 1v1h6V4a1 1 0 00-1-1m-4 0h4"/>
+    </svg>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Total -->
+                <div class="flex justify-between items-center mt-6 pt-4 border-t border-gray-200">
+                    <span class="text-lg font-semibold text-gray-700"></span>
+                    <span class="text-2xl font-bold text-green-600">Total : {{ panier.total }} {{ panier.devise }}</span>
+                </div>
+
+                <!-- Bouton Valider -->
+                <div class="mt-6 text-right">
+                    <a href="/panier/checkout?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="bg-black text-white px-6 py-3 rounded-full shadow-lg hover:bg-gray-800 transition">
+                       {{ t.page_panier.btn_continuez }}
+                    </a>
+                </div>
+
+                {% else %}
+                <p class="text-center text-gray-500 font-semibold py-10">Votre panier est vide 😔</p>
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

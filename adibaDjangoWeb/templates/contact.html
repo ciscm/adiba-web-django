@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color: white ">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex flex-col gap-0 grow items-center justify-center px-4" style="; font-family: 'Poppins', sans-serif;">
+        <section class="flex flex-col items-center justify-center py-24 px-4">
+  <div class="w-full max-w-4xl flex flex-col gap-6">
+
+    <!-- Titre -->
+    <h2 class="text-4xl font-bold text-center">{{ t.page_contactus.title }}</h2>
+
+    <!-- Description -->
+    <p class="text-center text-lg">{{ t.page_contactus.description }}</p>
+
+    <form method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+    {% csrf_token %}
+
+    <!-- Champs gauche -->
+    <input type="text" name="nom_complet" placeholder="{{ t.page_contactus.fields.full_name }}"
+           class="border-b border-gray-700 focus:outline-none py-2 w-full col-span-1" required>
+
+    <input type="email" name="email" placeholder="{{ t.page_contactus.fields.email }}"
+           class="border-b border-gray-700 focus:outline-none py-2 w-full col-span-1" required>
+
+    <input type="text" name="numero_telephone" placeholder="{{ t.page_contactus.fields.phone }}"
+           class="border-b border-gray-700 focus:outline-none py-2 w-full col-span-1" required>
+
+    <select name="preference_contact" class="border-b border-gray-700 py-2 w-full col-span-1" required>
+        <option disabled selected>{{ t.page_contactus.fields.contact_pref }} </option>
+        <option value="whatsapp">Whatsapp</option>
+        <option value="email">Email</option>
+        <option value="phone">Phone</option>
+    </select>
+
+    <!-- Champs droite -->
+    <select name="sujet" class="border-b border-gray-700 py-2  w-full col-span-1" required>
+        <option disabled selected>{{ t.page_contactus.fields.subject.name }}</option>
+        <option value="sc">{{ t.page_contactus.fields.subject.commande }}</option>
+        <option value="ap">{{ t.page_contactus.fields.subject.produit }}</option>
+        <option value="as">{{ t.page_contactus.fields.subject.adiba }}</option>
+        <option value="au">{{ t.page_contactus.fields.subject.autre }}</option>
+    </select>
+
+    <select name="country" class="border-b border-gray-700 py-2  w-full col-span-1"
+            id="country-select" onchange="checkOther(this)" required>
+        <option disabled selected>{{ t.page_contactus.fields.country }}</option>
+        <option value="morocco">Morocco</option>
+        <option value="france">France</option>
+        <option value="uk">United Kingdom</option>
+        <option value="other">Other</option>
+    </select>
+
+    <input type="text" name="other-country" id="other-country"
+           class="text-center border-b border-gray-700 py-2 mt-2 hidden w-full col-span-1 md:col-span-2"
+           placeholder="Please specify your country">
+
+    <!-- Message -->
+    <textarea name="message" placeholder="{{ t.page_contactus.fields.message }}"
+              class="border border-gray-700 p-2 resize-none w-full col-span-1 md:col-span-2" required></textarea>
+
+    <!-- Checkbox -->
+    <label class="flex items-center gap-2 w-full col-span-1 md:col-span-2">
+        <input type="checkbox" required>
+        {{ t.page_contactus.fields.accept_contact }}
+    </label>
+
+    <!-- Bouton -->
+    <button type="submit" class="bg-black text-white py-2 text-center w-full col-span-1 md:col-span-2">
+        {{ t.page_contactus.fields.submit }}
+    </button>
+</form>
+
+
+
+  </div>
+</section>
+
+    </main>
+
+
+
+             {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+<script>
+    function checkOther(select) {
+        const otherInput = document.getElementById('other-country');
+        if (select.value === 'other') {
+            otherInput.classList.remove('hidden');
+            otherInput.setAttribute('required', 'required');
+        } else {
+            otherInput.classList.add('hidden');
+            otherInput.removeAttribute('required');
+        }
+    }
+</script>
+
+
+</body>
+
+</html>

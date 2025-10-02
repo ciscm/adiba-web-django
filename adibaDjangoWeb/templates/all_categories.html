@@ -1,0 +1,61 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color:#EDE8E8">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex  flex-col gap-0 grow items-center justify-center px-4 "
+        style="; font-family: 'Poppins', sans-serif;">
+        <div class="flex flex-col items-center justify-center gap-10 my-24 w-full grow">
+
+           <h1 class="font-bold text-5xl text-center">{{ t.page_all_selections.title }}</h1>
+            <p class="text-center  text-lg">{{ t.page_all_selections.intro }}</p>
+            <div class="flex flex-wrap justify-center gap-6 w-full max-w-6xl mx-auto ">
+                    {% for category in categories %}
+                        <div class="bg-white rounded-xl shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center p-4
+              hover:scale-105 transition-transform cursor-pointer w-64 h-80 bg-gray-100">
+
+      <div class="w-full h-3/4 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+          <a href="/catalogue/selection/{{ category.id }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}"></a>
+          <img src="{{ category.image }}" alt="{{ category.name }}" class="w-full h-full object-cover">
+      </div>
+      <br>
+      <span class="text-gray-800 font-bold text-center">{{ category.name }}</span>
+  </div>
+                    {% endfor %}
+                </div>
+        </div>
+
+    </main>
+
+
+
+             {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+</body>
+
+</html>

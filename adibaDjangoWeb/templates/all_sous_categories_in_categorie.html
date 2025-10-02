@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color:#EDE8E8">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex  flex-col gap-0 grow items-center justify-center px-4 "
+        style="; font-family: 'Poppins', sans-serif;">
+        <div class="flex flex-col items-center justify-center gap-10 my-10 w-full grow">
+            {% include 'barre_recherche.html' %}
+            <!-- Image de la catégorie -->
+            <img src="{{ categorie.image }}" alt="{{ categorie.name }}" class="w-full max-w-4xl h-80 object-full-cover md:object-cover rounded-xl shadow-lg">
+            <nav class="flex items-center text-black text-sm mt-4 space-x-2">
+                <span class="font-semibold text-gray-500">Selection</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                <a href="/catalogue/selection/{{ categorie.id }}?devise={{ devise }}&token={{ token }}&lang={{ lang }}"><span class="font-semibold text-black">{{ categorie.name }}</span></a>
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                <span class="font-semibold text-black">Sous Selections</span>
+            </nav>
+
+            <h1 class="font-bold text-5xl text-center">{{ t.page_all_sous_selection.title }}</h1>
+            <p class="text-center text-lg">{{ categorie.desc }}</p>
+            <div class="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
+                        {% for sous_cat in sous_categories %}
+
+                        <div class="bg-white rounded-xl border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center
+                             hover:scale-105 transition-transform cursor-pointer w-64 h-96 bg-gray-100" style="border-color:#C09B6F">
+
+                            <div class="w-full h-2/3 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+                                <a href="/catalogue/sous-selection/{{ sous_cat.id }}?devise={{ devise }}&token={{ token }}&lang={{ lang }}">
+                                <img src="{{ sous_cat.image }}" alt="{{ sous_cat.name }}" class="w-full h-full object-cover">
+                            </a>
+                            </div>
+
+                            <br>
+                             <br>
+                            <span class="text-gray-800 font-bold text-center">{{ sous_cat.name }}</span>
+
+                        </div>
+
+                        {% endfor %}
+        </div>
+
+    </main>
+
+
+
+             {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+</body>
+
+</html>

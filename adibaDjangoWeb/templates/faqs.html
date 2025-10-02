@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color: white ">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex flex-col gap-0 grow items-center justify-center px-4"  style="; font-family: 'Poppins', sans-serif;">
+        <section class="flex flex-col items-center justify-center py-24 px-4" >
+            <div class="w-full max-w-4xl flex flex-col gap-6">
+
+                <h2 class="text-4xl font-bold text-center">{{ t.page_faqs.title }}</h2>
+
+                <p class="text-center text-lg">{{ t.page_faqs.intro }}</p>
+
+                <div class="w-full max-w-4xl flex flex-col gap-4 mt-8">
+  {% for faq in faqs %}
+  <div class="border rounded-lg p-4 border-black">
+    <button class="flex items-center w-full text-left" onclick="toggleAnswer(this)">
+      <span class="font-bold text-lg flex-grow text-left">{{ faq.question }}</span>
+      <svg class="w-6 h-6 ml-2 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+      </svg>
+    </button>
+    <div class="mt-2 hidden text-gray-700">
+      {{ faq.answer }}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<script>
+  function toggleAnswer(button) {
+    const answer = button.nextElementSibling;
+    const icon = button.querySelector('svg');
+    answer.classList.toggle('hidden');
+    icon.classList.toggle('rotate-180');
+  }
+</script>
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+             {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+</body>
+
+</html>

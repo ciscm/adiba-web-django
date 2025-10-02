@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color:#EDE8E8">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex  flex-col gap-0 grow items-center justify-center px-4"
+        style="; font-family: 'Poppins', sans-serif;">
+  <div class="flex flex-col items-center justify-center gap-10 my-24 w-full grow">
+
+     <h1 class="font-bold text-5xl text-center">{{ t.page_post_message_succes.title }}</h1>
+     <h2 class="text-center text-2xl">{{ t.page_post_message_succes.intro }}</h2>
+     <a
+       class="mt-8 bg-black text-white font-semibold text-center py-3 px-6 w-full max-w-xs rounded-lg hover:bg-gray-800 transition-colors">
+      {{ t.page_post_message_succes.btn }}
+    </a>
+  </div>
+</main>
+
+
+
+             {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+</body>
+
+</html>

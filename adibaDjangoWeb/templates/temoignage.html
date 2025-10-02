@@ -1,0 +1,65 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color: white ">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex flex-col gap-0 grow items-center justify-center px-4" style="; font-family: 'Poppins', sans-serif;">
+        <section class="flex flex-col items-center justify-center py-24 px-4" >
+            <div class="w-full max-w-4xl flex flex-col gap-6">
+
+                <h2 class="text-4xl font-bold text-center">{{ t.page_temoignage.title }}</h2>
+
+                <p class="text-center text-lg">{{ t.page_temoignage.intro }}</p>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    {% for temoignage in temoignages %}
+        <div  style="border-color:#394046;" class="flex items-start gap-4 border-2 rounded-lg p-4
+                    {% if forloop.last and forloop.counter|divisibleby:2 == False %} md:col-span-2 md:justify-center {% endif %}">
+
+            <!-- SVG avatar -->
+            <svg class="w-10 h-10 text-gray-500 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+
+            <div>
+                <p class="font-bold">{{ temoignage.name }}</p>
+                <p class="text-gray-700">{{ temoignage.comment }}</p>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+            </div>
+
+        </section>
+
+    </main>
+        {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+</body>
+
+</html>

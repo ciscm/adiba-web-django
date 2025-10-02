@@ -1,0 +1,162 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+   {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors ",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors", "url": "{{ request.build_absolute_uri }}"
+  }
+  </script>
+</head>
+<body>
+    <div id="contenaire-parent" class="w-full mx-auto     shadow-lg" style="background-color:#EDE8E8">
+    <header id="en-tete" class=" sticky top-0 z-50" >
+
+            {% include 'entete.html'%}
+
+    </header>
+    <main class="flex  flex-col gap-0 grow items-center justify-center px-4 "
+        style="; font-family: 'Poppins', sans-serif;">
+        <div class="flex flex-col items-center justify-center gap-10 my-10 w-full grow">
+            {% include 'messages.html' %}
+            {% include 'barre_recherche.html' %}
+            <!-- Image de la catégorie -->
+            <img src="{{ categorie.image }}" alt="{{ categorie.name }}" class="w-full max-w-4xl h-80 object-cover rounded-xl shadow-lg">
+            <nav class="flex items-center text-black text-sm mt-4 space-x-2">
+                <span class="font-semibold text-gray-500">Selection</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                    </svg>
+                <span class="font-semibold text-black">{{ categorie.name }}</span>
+            </nav>
+            <h1 class="font-bold text-5xl text-center">{{ t.page_selection.title }}</h1>
+            <p class="text-center text-lg">{{ categorie.desc }}</p>
+            <div class="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
+                {% for sous_cat in sous_categories %}
+                <a href="/catalogue/sous-selection/{{ sous_cat.id }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}">
+                    <div class="relative group cursor-pointer md:w-64 w-32">
+
+                        <input type="hidden" name="sous_cat" value="{{ sous_cat.id }}">
+
+                        <img src="{{ sous_cat.image }}" alt="{{ sous_cat.name }}"
+                        class="w-full h-32 md:h-64 object-cover rounded-xl shadow-lg">
+
+                        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center
+                        opacity-0 group-hover:opacity-100 transition-opacity rounded-xl">
+                            <span class="text-white text-xl font-semibold">{{ sous_cat.name }}</span>
+                        </div>
+                    </div>
+                    </a>
+                {% endfor %}
+            </div>
+            <div class="flex justify-center items-center gap-6 mt-2">
+                <a href="/catalogue/selection/{{ categorie.id }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}&page={{ page|add:"-1" }}"
+                    class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
+                    &lt;
+                </a>
+
+                <a href="/catalogue/selection/{{ categorie.id }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}&page={{ page|add:"1" }}"
+                    class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
+                    &gt;
+                </a>
+            </div>
+
+            <a href="/catalogue/all-sous-selection/{{ categorie.id }}?lang={{lang}}&devise={{ devise }}&token={{ token }}"
+                class="mt-3 bg-black text-white font-semibold text-center py-3 px-6 w-full max-w-xs rounded-lg hover:bg-gray-800 transition-colors">
+                {{ t.page_selection.btn_voir_all_sous_selections }}
+            </a>
+        </div>
+        {% for category in sous_categories %}
+            <div class=" hidden md:block flex flex-col w-full mx-4 max-w-8xl my-24 px-4">
+    <!-- Desktop: titre + bouton sur la même ligne, Mobile: titre, description, bouton -->
+    <div class="flex flex-col md:flex-row md:items-center justify-between w-full mb-4">
+        <h2 class="text-3xl font-bold">{{ category.name }}</h2>
+        <a href="/catalogue/sous-selection/{{ category.id }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="mt-4 md:mt-0 bg-black text-white font-semibold text-center py-3 px-6 w-full max-w-xs rounded-lg hover:bg-gray-800 transition-colors md:order-3">
+            {{ t.page_selection.btn_voir_sous_selection }}
+        </a>
+    </div>
+    <p class="text-lg text-left mb-4 md:mb-10 md:order-2">
+        {{ category.desc }}
+    </p>
+    <div class="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
+                {% for produit in category.produits %}
+                        <div class="bg-white rounded-xl  border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center
+                             hover:scale-105 transition-transform cursor-pointer w-64 h-96 bg-gray-100" style="border-color:#C09B6F">
+                            <div class="w-full h-1/2 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+                                <a href="/catalogue/produit/{{ produit.reference }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}">
+                                <img src="{{ produit.image }}" alt="{{ produit.name }}" class="w-full h-full object-cover">
+                                </a>
+                            </div>
+                            <br>
+                            <span class="text-gray-800 font-bold text-center">{{ produit.name }}</span>
+                            <br>
+                             <span class="text-gray-800 font-bold text-center">{{ produit.prix }}</span>
+                            <br>
+                            <span><a href="/panier/add?lang={{ lang }}&type=sc&page={{ page }}&token={{ token }}&produit={{ produit.reference }}"
+                                class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
+                        {{ t.page_selection.btn_ajouter }}
+                            </a></span>
+
+                        </div>
+
+                {% endfor %}
+
+
+    </div>
+    </div>
+    <div class="block md:hidden flex flex-col w-full mx-4 max-w-8xl my-24 px-4">
+                    <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-4 w-full">
+                        <h2 class="text-3xl font-bold mb-4 md:mb-0">{{ category.name }}</h2>
+                        <p class="text-lg text-left mb-4 md:mb-0 md:mr-4">
+                            {{ category.desc }}
+                        </p>
+                        <button class="bg-black text-white font-semibold text-center py-3 px-6 w-full max-w-xs rounded-lg hover:bg-gray-800 transition-colors">
+                            {{ t.page_selection.btn_voir_sous_selection }}
+                        </button>
+                    </div>
+                    <div class="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
+                        {% for produit in category.produits %}
+                        <div class="bg-white rounded-xl border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center
+                             hover:scale-105 transition-transform cursor-pointer w-64 h-96 bg-gray-100" style="border-color:#C09B6F">
+                            <div class="w-full h-1/2 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+                                <img src="{{ produit.image }}" alt="{{ produit.name }}" class="w-full h-full object-cover">
+                            </div>
+                            <br>
+                            <span class="text-gray-800 font-bold text-center">{{ produit.name }}</span>
+                            <br>
+                             <span class="text-gray-800 font-bold text-center">{{ produit.prix }}</span>
+                            <br>
+                            <span><a href="/panier/add?lang={{ lang }}&type=sc&page={{ page }}&token={{ token }}&produit={{ produit.reference }}"
+                                class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
+                        {{ t.page_selection.btn_ajouter }}
+                            </a></span>
+
+                        </div>
+
+                        {% endfor %}
+                    </div>
+    </div>
+    {% endfor %}
+
+    </main>
+
+
+
+             {% include 'footer.html' %}
+
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
+
+
+</body>
+
+</html>
