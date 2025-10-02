@@ -18,7 +18,12 @@
                             <br>
                             <span class="text-gray-800 font-bold text-center">{{ p_pr.name }}</span>
                             <br>
-                             <span class="text-gray-800 font-bold text-center">{{ p_pr.prix }}</span>
+                             <div class="w-40 mx-auto text-center mt-2">
+    <!-- Prix original en rouge barré, plus petit -->
+    <span class="text-red-600 line-through text-sm mr-2">{{ p_pr.prix }}</span>
+    <!-- Prix promo en vert, plus grand et gras -->
+    <span class="text-green-600 font-bold text-xl">{{ p_pr.prix_promo }}</span>
+</div>
                             <br>
                             <span><a href="/panier/add?lang={{ lang }}&type=pr&page={{ page }}&token={{ token }}&produit={{ p_pr.reference }}"
                                 class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
