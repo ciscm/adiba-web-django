@@ -1,0 +1,35 @@
+<div class="hidden md:block w-full max-w-7xl mx-auto my-10 px-4">
+                    <h2 class="text-3xl font-bold">
+                        {{ t.page_recherche.produit.name }}
+                    </h2>
+
+                <p class="text-lg text-left mb-10">
+                    {{ t.page_recherche.produit.desc }}
+                </p>
+                <div class="flex flex-wrap justify-center gap-6 w-full">
+                    {% for p_sc in produit_sc %}
+                        <div class="bg-white rounded-xl  border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center
+                             hover:scale-105 transition-transform cursor-pointer w-64 h-96 bg-gray-100" style="border-color:#C09B6F">
+                            <div class="w-full h-1/2 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+                                <a href="/catalogue/produit/{{ p_sc.reference }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}">
+                                <img src="{{ p_sc.image }}" alt="{{ p_sc.name }}" class="w-full h-full object-cover">
+                                </a>
+                            </div>
+                            <br>
+                            <span class="text-gray-800 font-bold text-center">{{ p_sc.name }}</span>
+                            <br>
+                             <span class="text-gray-800 font-bold text-center">{{ p_sc.prix }}</span>
+                            <br>
+                            <span><a href="/panier/add?lang={{ lang }}&type=sc&page={{ page }}&token={{ token }}&produit={{ p_sc.reference }}"
+                                class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
+                        {{ t.page_selection.btn_ajouter }}
+                            </a></span>
+
+                        </div>
+                    {% empty %}
+                        <div class="w-full text-center text-3xl text-black font-semibold py-10">
+                        {{ t.page_recherche.produit.empty }}
+                    </div>
+                    {% endfor %}
+                </div>
+    </div>

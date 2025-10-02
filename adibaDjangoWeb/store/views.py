@@ -285,6 +285,9 @@ def catalogue(request):
     return render(request,"catalogue.html",context)
 
 def retourPrixEnBonneForme(prix_obj,devise,retour):
+    if not prix_obj:  # ✅ sécurisation
+        return None if retour != "str" else "N/A"
+
     if retour == "str" :
         if devise == "dhs":
             prix = f"{prix_obj.prix_dhs} DHS"
@@ -956,3 +959,59 @@ def decrementPanier(request):
     else:
         messages.error(request, "❌ Type inconnu.")
         return redirect(request.META.get("HTTP_REFERER", "/"))
+def search(request) :
+    lang = request.GET.get("lang", "fr")
+    devise = request.GET.get("devise", "dhs").lower()
+    token = request.GET.get("token")
+    saisie = request.GET.get("saisie")
+    file_path = os.path.join(settings.BASE_DIR, "data", "traduction.json")
+    with open(file_path, "r", encoding="utf-8") as f:
+        all_translations = json.load(f)
+    t = all_translations.get(lang, all_translations["fr"])
+    if lang == 'fr' :
+        categoriess = Categorie.objects.filter(nom__icontains=saisie,archive=False)
+        produit_scc = ProduitAvecSousCategorie.objects.filter(produit__nom_produit__icontains=saisie,produit__archive =False)
+        produit_prr = ProduitAvecPromotion.objects.filter(produit__nom_produit__icontains=saisie)
+    else:
+        categoriess = Categorie.objects.filter(nom_english__icontains=saisie,archive=False)
+        produit_scc = ProduitAvecSousCategorie.objects.filter(produit__nom_produit_english__icontains=saisie,produit__archive =False)
+        produit_prr = ProduitAvecPromotion.objects.filter(produit__nom_produit_english__icontains=saisie)
+
+    categories = [
+        {
+            "id": cat.id,
+            "name" : cat.nom if lang =='fr' else cat.nom_english,
+            "image" : cat.image.url if cat.image else None
+        } for cat in categoriess
+    ]
+    produit_sc = [
+        {
+            "reference": p_sc.produit.reference,
+            "name": p_sc.produit.nom_produit if lang == 'fr' else p_sc.produit.nom_produit_english,
+            "image": p_sc.produit.image.url if p_sc.produit.image else None,
+            "prix" : get_prix(p_sc.produit,"normal",devise,"str")
+        } for p_sc in produit_scc
+    ]
+    produit_pr = [
+        {
+            "reference": p_pr.produit.reference,
+            "name": p_pr.produit.nom_produit if lang == 'fr' else p_pr.produit.nom_produit_english,
+            "image": p_pr.produit.image.url if p_pr.produit.image else None,
+            "prix": get_prix(p_pr.produit, "normal", devise, "str"),
+            "prix_promo": get_prix(p_pr.produit, "promo", devise, "str")
+        } for p_pr in produit_prr
+    ]
+    nb_produit_panier = get_panier_count(token)
+    context = {
+        "categories": categories,
+        "produit_sc" : produit_sc,
+        "produit_pr" :produit_pr,
+        "t": t,
+        "lang": lang,
+        "token": token,
+        "devise": devise,
+        "saisie" : saisie,
+        "nb_produit_panier": nb_produit_panier,
+    }
+
+    return render(request,"page_recherche.html",context)

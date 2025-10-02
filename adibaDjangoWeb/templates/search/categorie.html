@@ -1,0 +1,32 @@
+<div class="hidden md:block w-full max-w-7xl mx-auto my-10 px-4">
+<div class="flex items-center justify-between mb-4">
+                    <h2 class="text-3xl font-bold">
+                        {{ t.page_recherche.categorie.name }}
+                    </h2>
+                    <a href="/catalogue/selections?lang={{ lang }}&devise={{ devise }}&token={{ token }}"
+                        class="bg-black text-white font-semibold text-center py-3 px-6 rounded-lg hover:bg-gray-800 transition-colors">
+                    {{ t.page_home.btn }}
+                    </a>
+                </div>
+                <p class="text-lg text-left mb-10">
+                    {{ t.page_recherche.categorie.desc }}
+                </p>
+                <div class="flex flex-wrap justify-center gap-6 w-full">
+                    {% for category in categories %}
+                        <a href="/catalogue/selection/{{ category.id }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}">
+                            <div class="bg-white rounded-xl border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center p-4
+                                        hover:scale-105 transition-transform cursor-pointer w-64 h-80"
+                                 style="border-color:#C09B6F">
+                                <div class="w-full h-3/4 overflow-hidden rounded-lg mb-3 flex-shrink-0">
+                                    <img src="{{ category.image }}" alt="{{ category.name }}" class="w-full h-full object-cover">
+                                </div>
+                                <span class="text-gray-800 font-bold text-center">{{ category.name }}</span>
+                            </div>
+                        </a>
+                    {% empty %}
+                        <div class="w-full text-center text-3xl text-black font-semibold py-10">
+                        {{ t.page_recherche.categorie.empty }}
+                    </div>
+                    {% endfor %}
+                </div>
+    </div>
