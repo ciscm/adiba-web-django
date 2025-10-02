@@ -242,19 +242,7 @@ class SousCategorieAdmin(admin.ModelAdmin):
     inlines = [ProduitSousCategorieInline]
 class PanierAdmin(admin.ModelAdmin):
     list_display = ['token','total_commande','date']
-@admin.register(ItemSousCategoriePanier)
-class ItemSousCategoriePanierAdmin(admin.ModelAdmin):
-    list_display = ('id', 'panier', 'produit', 'quantite')
-    list_filter = ('panier', 'produit')
-    search_fields = ('panier__id', 'produit__produit__nom')  # adapte selon tes champs
-    ordering = ('-id',)
 
-@admin.register(ItemPromotionPanier)
-class ItemPromotionPanierAdmin(admin.ModelAdmin):
-    list_display = ('id', 'panier', 'produit', 'quantite')
-    list_filter = ('panier', 'produit')
-    search_fields = ('panier__id', 'produit__produit__nom')  # adapte selon tes champs
-    ordering = ('-id',)
 
 admin.site.register(Panier,PanierAdmin)
 
