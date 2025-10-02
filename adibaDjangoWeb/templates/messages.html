@@ -1,12 +1,24 @@
 {% if messages %}
-<div class="fixed top-5 right-5 space-y-2 z-50">
+<div id="notif-container" class="fixed top-5 right-5 space-y-2 z-50">
     {% for message in messages %}
-        <div    style=" background-color : {% if message.tags == 'success' %}#C09B6F
-         {% elif message.tags == 'error' %} red {% else %} gray {% endif %}"
-            class ="px-4 py-2 rounded-lg shadow-lg text-white
-        ">
+        <div class="notif px-4 py-2 rounded-lg shadow-lg text-white transition-opacity duration-500"
+             style="background-color:
+             {% if message.tags == 'success' %}#C09B6F
+             {% elif message.tags == 'error' %} red
+             {% else %} gray
+             {% endif %};">
             {{ message }}
         </div>
     {% endfor %}
 </div>
 {% endif %}
+
+<script>
+  // Faire disparaître après 5 secondes
+  setTimeout(() => {
+      document.querySelectorAll('#notif-container .notif').forEach(el => {
+          el.classList.add('opacity-0'); // transition avec Tailwind
+          setTimeout(() => el.remove(), 500); // on supprime du DOM après transition
+      });
+  }, 5000);
+</script>
