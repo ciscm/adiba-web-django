@@ -1,11 +1,9 @@
 {% if messages %}
 <div class="fixed top-5 right-5 space-y-2 z-50">
     {% for message in messages %}
-        <div class="
-            px-4 py-2 rounded-lg shadow-lg text-white
-            {% if message.tags == 'success' %} bg-green-500
-            {% elif message.tags == 'error' %} bg-red-500
-            {% else %} bg-gray-500 {% endif %}
+        <div    style=" background-color : {% if message.tags == 'success' %}#C09B6F
+         {% elif message.tags == 'error' %} red {% else %} gray {% endif %}"
+            class ="px-4 py-2 rounded-lg shadow-lg text-white
         ">
             {{ message }}
         </div>
