@@ -240,8 +240,7 @@ class SousCategorieAdmin(admin.ModelAdmin):
     list_filter = ('archive','categorie')
     search_fields = ('nom', 'nom_english', 'description', 'description_english')
     inlines = [ProduitSousCategorieInline]
-class PanierAdmin(admin.ModelAdmin):
-    list_display = ['token','total_commande','date']
+
 
 
 admin.site.register(Panier,PanierAdmin)
