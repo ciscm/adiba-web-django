@@ -97,6 +97,26 @@
         "btn" : "Valider"
       }
     },
+    "page_recherche" : {
+  "title" : "Trouvez exactement ce que vous cherchez",
+  "categorie" : {
+    "name" : "Sélections Trouvées",
+    "desc" : "",
+    "empty" : "Aucune catégorie trouvée"
+  },
+  "produit" : {
+    "name" : "Produits Trouvés",
+    "desc" : "",
+    "empty" : "Aucun produit trouvé"
+  },
+  "produit_promo" : {
+    "name" : "Produits en Promotion Trouvés",
+    "desc" : "",
+    "empty" : "Aucun produit en promotion trouvé"
+  },
+  "intro" : "Parcourez notre collection pour découvrir des ressources, des réponses et de l'inspiration conçues pour vous."
+},
+
     "page_home": {
       "desc": "Mobilier sur mesure, décoration raffinée, art de recevoir : le savoir-faire marocain dans chaque détail",
       "btn" : "Toutes les Sélections"
@@ -152,6 +172,7 @@
       "title": "What Our Customers Say About Us",
       "intro": "Discover the experiences of our satisfied customers and be inspired by their stories of satisfaction with our furniture."
     },
+
     "page_home": {
       "desc": "Custom furniture, refined decoration, art of hosting: Moroccan craftsmanship in every detail",
       "btn": "See All Selections"
@@ -236,6 +257,26 @@
       "title": "Our Selections",
       "intro": "Custom furniture, refined decoration, tableware: Moroccan craftsmanship in every detail\n"
     },
+    "page_recherche" : {
+  "title" : "Find exactly what you are looking for",
+  "categorie" : {
+    "name" : "Found Selections",
+    "desc" : "",
+    "empty" : "No categories found"
+  },
+  "produit" : {
+    "name" : "Found Products",
+    "desc" : "",
+    "empty" : "No products found"
+  },
+  "produit_promo" : {
+    "name" : "Found Promotional Products",
+    "desc" : "",
+    "empty" : "No promotional products found"
+  },
+  "intro" : "Browse our collection to discover resources, answers, and inspiration designed for you."
+},
+
     "page_contactus": {
       "title": "Contact Us",
       "description": "Do you have a question or need assistance? Fill out the form below and our team will respond as soon as possible.",
