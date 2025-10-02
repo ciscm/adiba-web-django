@@ -49,27 +49,7 @@
 
 
             <!-- Section Mobile -->
-            <div class="block md:hidden w-full max-w-7xl mx-auto my-10 px-4">
-                <h2 class="text-3xl font-bold mb-4">
-                    {{ t.page_recherche.categorie.name }}
-                </h2>
-                <p class="text-lg text-left mb-6">
-                    {{ t.page_recherche.categorie.desc }}
-                </p>
-                <div class="flex flex-wrap justify-center gap-6 w-full">
-                    {% for category in categories %}
-                        <a href="/catalogue/selection/{{ category.id }}?lang={{ lang }}&devise={{ devise }}&token={{ token }}">
-                            <div class="relative border group cursor-pointer w-64">
-                                <img src="{{ category.image }}" alt="{{ category.name }}"
-                                     class="w-full h-64 object-cover rounded-xl shadow-lg">
-                                <span class="text-black text-xl font-semibold block text-center w-full mt-2">
-                                    {{ category.name }}
-                                </span>
-                            </div>
-                        </a>
-                    {% endfor %}
-                </div>
-            </div>
+
 
         </div>
     </main>
