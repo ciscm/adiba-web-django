@@ -1,24 +1,40 @@
 {% if messages %}
-<div id="notif-container" class="fixed top-5 right-5 space-y-2 z-50">
+<div id="notif-container" class="fixed top-5 right-5 w-72 max-w-full space-y-3 z-50">
     {% for message in messages %}
-        <div class="notif px-4 py-2 rounded-lg shadow-lg text-white transition-opacity duration-500"
+        <div class="notif flex items-center gap-3 px-4 py-3 rounded-xl shadow-lg text-white text-sm sm:text-base transition-opacity duration-500"
              style="background-color:
              {% if message.tags == 'success' %}#C09B6F
-             {% elif message.tags == 'error' %} red
-             {% else %} gray
+             {% elif message.tags == 'error' %}#DC2626
+             {% else %}#6B7280
              {% endif %};">
-            {{ message }}
+            <!-- Icône -->
+            {% if message.tags == 'success' %}
+              <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+              </svg>
+            {% elif message.tags == 'error' %}
+              <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+              </svg>
+            {% else %}
+              <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20h.01M12 4h.01"/>
+              </svg>
+            {% endif %}
+
+            <!-- Texte -->
+            <span class="flex-1">{{ message }}</span>
         </div>
     {% endfor %}
 </div>
 {% endif %}
 
 <script>
-  // Faire disparaître après 5 secondes
+  // Faire disparaître après 5 secondes avec effet fade
   setTimeout(() => {
       document.querySelectorAll('#notif-container .notif').forEach(el => {
-          el.classList.add('opacity-0'); // transition avec Tailwind
-          setTimeout(() => el.remove(), 500); // on supprime du DOM après transition
+          el.classList.add('opacity-0', 'translate-y-2');
+          setTimeout(() => el.remove(), 500);
       });
   }, 5000);
 </script>
