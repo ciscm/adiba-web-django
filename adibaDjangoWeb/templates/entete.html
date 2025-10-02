@@ -32,8 +32,8 @@
         </span>
       </a>
       <!-- Recherche -->
-      <button class="relative text-gray-800 hover:text-gray-600 group"
-        onclick="window.location.href='/search?token={{ token }}&devise={{ devise }}&lang={{ lang }}&saisie=' + encodeURIComponent(document.getElementById('search-input').value)">
+      <a class="relative text-gray-800 hover:text-gray-600 group"
+        href="/search?token={{ token }}&devise={{ devise }}&lang={{ lang }}&saisie=">
     <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
          viewBox="0 0 24 24">
       <path stroke-linecap="round" stroke-linejoin="round"
@@ -44,7 +44,7 @@
            group-hover:opacity-100 transition-opacity">
        Recherche
     </span>
-</button>
+</a>
 
 
       <a class="relative text-gray-800 hover:text-gray-600 group"
