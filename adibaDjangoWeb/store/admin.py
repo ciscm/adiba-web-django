@@ -243,7 +243,6 @@ class SousCategorieAdmin(admin.ModelAdmin):
 
 
 
-admin.site.register(Panier,PanierAdmin)
 
 admin.site.register(Fournisseur, FournisseurAdmin)
 
