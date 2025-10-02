@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-i%-5=(%e59viv=8i=1!(bp7mvtvtac(2$v+q!!!&^1^mppa3yr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0','localhost','127.0.0.1',"52a4c090c790.ngrok-free.app"]
+ALLOWED_HOSTS = ['0.0.0.0','localhost','127.0.0.1',"52a4c090c790.ngrok-free.app","146.59.230.97"]
 
 Q_CLUSTER = {
     'name': 'DjangoQ',
