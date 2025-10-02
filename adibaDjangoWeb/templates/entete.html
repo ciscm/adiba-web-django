@@ -32,18 +32,19 @@
         </span>
       </a>
       <!-- Recherche -->
-      <button class="relative text-gray-800 hover:text-gray-600 group">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
-             viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round"
-                d="M21 21l-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/>
-        </svg>
-        <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
-               bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0
-               group-hover:opacity-100 transition-opacity">
-           Recherche
-        </span>
-      </button>
+      <button class="relative text-gray-800 hover:text-gray-600 group"
+        onclick="window.location.href='/search?token={{ token }}&devise={{ devise }}&lang={{ lang }}&saisie=' + encodeURIComponent(document.getElementById('search-input').value)">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2"
+         viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round"
+            d="M21 21l-4.35-4.35M11 19a8 8 0 1 1 0-16 8 8 0 0 1 0 16z"/>
+    </svg>
+    <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
+           bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0
+           group-hover:opacity-100 transition-opacity">
+       Recherche
+    </span>
+</button>
 
 
       <a class="relative text-gray-800 hover:text-gray-600 group"
