@@ -50,12 +50,12 @@
       "btn_ajouter" : "Ajouter"
     },
     "page_all_sous_selection" : {
-      "title" : "Nos Sous Selections"
+      "title" : "Nos  Selections"
     },
     "page_selection" : {
-      "title" : "Nos Sous Selections",
-      "btn_voir_sous_selection" : "Voir la  sous-selection",
-      "btn_voir_all_sous_selections" : " Toutes les sous selections",
+      "title" : "Nos  Selections",
+      "btn_voir_sous_selection" : "Voir la  selection",
+      "btn_voir_all_sous_selections" : " Toutes les selections",
       "btn_ajouter" : "Ajouter au Panier"
     },
     "page_all_selections" : {
@@ -152,7 +152,7 @@
       "placeholder": "Search for an item, a collection, or a sub-collection"
     },
     "page_all_sous_selection" : {
-      "title" : "Our Sous Selections"
+      "title" : "Our  Selections"
     },
     "page_all_promotions": {
       "title": "Our Promotions",
@@ -225,9 +225,9 @@
       "btn_voir_selection" : "Show selection"
     },
     "page_selection" : {
-      "title" : "Our Sous Selections",
-      "btn_voir_sous_selection" : "Show Sous Selection",
-      "btn_voir_all_sous_selections" : "All Sous Selections",
+      "title" : "Our  Selections",
+      "btn_voir_sous_selection" : "Show  Selection",
+      "btn_voir_all_sous_selections" : "All  Selections",
       "btn_ajouter" : "Add To Cart"
     },
     "page_produit" : {

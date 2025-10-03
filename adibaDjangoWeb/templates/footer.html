@@ -1,113 +1,57 @@
 {% load static %}
-<footer   class=" pt-0  "  >
-        <div  style="background-color:#394046" class=" px-4  w-full  justify-between items-center" style="; font-family: 'Poppins', sans-serif;">
-        <div  class="footer-theme-container   py-16 px-1 md:px-16" >
-<div class="w-3/4 text-white mx-auto flex flex-col md:flex-row md:justify-between text-left space-y-8 md:space-y-0 md:space-x-8">
+<footer class="pt-0">
 
-  <!-- Logo + nom + ville -->
-  <div class="flex flex-col items-start space-y-4">
-    <img src="/media/static/images/logo_white.png" alt="Atlas Vox Logo" class="h-20 w-20 rounded-full object-contain">
-    <p class="font-semibold text-xl">Adiba Interiors</p>
-    <p class="text-sm">
+  <div style="background-color:#394046; font-family: 'Poppins', sans-serif;" class="w-full flex justify-center">
+    <!-- Bloc centré -->
+    <div class="footer-theme-container py-16 px-1 md:px-16 w-full md:w-3/4 text-white flex justify-center">
 
-        Casablanca, Morocco
-    </p>
-    <div class="flex space-x-4">
-      <a href="" target="_blank"><i class="fab fa-facebook fa-md"></i></a>
-      <a href="" target="_blank"><i class="fab fa-instagram fa-md"></i></a>
-      <a href="" target="_blank"><i class="fab fa-tiktok fa-md"></i></a>
-        <a href="https://wa.me/+212660758860" class="relative text-gray-800 hover:text-gray-600 group">
-        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-  <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.6 5.85L0 24l6.38-1.63A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 21.5a9.5 9.5 0 01-4.88-1.36l-.35-.22-3.79.97.99-3.7-.23-.37A9.5 9.5 0 1121.5 12 9.5 9.5 0 0112 21.5zm5.05-7.13c-.27-.14-1.6-.79-1.84-.88-.24-.09-.42-.14-.6.14s-.69.88-.85 1.06c-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.16-1.33-.8-.71-1.34-1.6-1.5-1.87-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.6-1.44-.82-1.97-.22-.52-.44-.45-.6-.46-.16-.01-.34-.01-.52-.01s-.48.07-.73.34c-.25.27-.95.92-.95 2.25s.97 2.61 1.1 2.79c.14.18 1.9 2.9 4.62 4.07.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.27-.18-.57-.32z"/>
-</svg>
+      <div class="flex flex-col items-center w-full">
 
-        <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
-               bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0
-               group-hover:opacity-100 transition-opacity">
-           Whatsapp
-        </span>
-      </a>
+        <!-- Logo centré -->
+        <div class="flex flex-col items-center space-y-4">
+
+          <img src="/media/static/images/logo_white.png" alt="Atlas Vox Logo" class="h-20 w-20 rounded-full object-contain">
+
+          <!-- Sections -->
+          <div class="flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0 items-center justify-center">
+            <a href="/?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.home }}</a>
+            <a href="/catalogue?lang={{ lang }}&page=1&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.selection }}</a>
+            <a href="/about-us?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.about }}</a>
+            <a href="/faqs?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.faq }}</a>
+            <a href="/contact?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.contact }}</a>
+            <a href="/temoignage?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.testimonials }}</a>
+          </div>
+
+          <p class="text-sm">Casablanca, Morocco</p>
+
+          <div class="flex space-x-4">
+            <a href="" target="_blank"><i class="fab fa-facebook fa-md"></i></a>
+            <a href="" target="_blank"><i class="fab fa-instagram fa-md"></i></a>
+            <a href="" target="_blank"><i class="fab fa-tiktok fa-md"></i></a>
+            <a href="https://wa.me/+212660758860" class="relative text-gray-800 hover:text-gray-600 group">
+              <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.6 5.85L0 24l6.38-1.63A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 21.5a9.5 9.5 0 01-4.88-1.36l-.35-.22-3.79.97.99-3.7-.23-.37A9.5 9.5 0 1121.5 12 9.5 9.5 0 0112 21.5zm5.05-7.13c-.27-.14-1.6-.79-1.84-.88-.24-.09-.42-.14-.6.14s-.69.88-.85 1.06c-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.16-1.33-.8-.71-1.34-1.6-1.5-1.87-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.6-1.44-.82-1.97-.22-.52-.44-.45-.6-.46-.16-.01-.34-.01-.52-.01s-.48.07-.73.34c-.25.27-.95.92-.95 2.25s.97 2.61 1.1 2.79c.14.18 1.9 2.9 4.62 4.07.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.27-.18-.57-.32z"/>
+              </svg>
+              <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
+                     bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0
+                     group-hover:opacity-100 transition-opacity">
+                 Whatsapp
+              </span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
     </div>
   </div>
 
-  <!-- Sections -->
-  <div class="flex flex-col items-start space-y-2">
-
-      <a href="/?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.home }}</a>
-      <a href="/catalogue?lang={{ lang }}&page=1&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.selection }}</a>
-      <a href="/about-us?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.about }}</a>
-      <a href="/faqs?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.faq }}</a>
-      <a href="/contact?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.contact }}</a>
-      <a href="/temoignage?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.testimonials }}</a>
+  <div id="signature" class="mt-2 text-center text-sm" style="color:black; background-color:white;">
+    <p>© 2025. Tous droits réservés.</p>
+    <p>Designé par <span class="font-bold underline cursor-pointer">
+      <a href="https://atlas-vox.com" target="_blank" rel="noopener noreferrer">Atlas-Vox</a>
+    </span>.</p>
   </div>
 
-  <!-- Contact -->
-  <div class="flex flex-col items-start space-y-2 text-left">
-    <p class="font-bold text-xl">
-
-        Contact
-    </p>
-
-    <p class="text-sm flex items-center space-x-2">
-      <i class="fas fa-envelope"></i>
-      <span>adibainteriors@gmail.com</span>
-    </p>
-
-    <p class="text-sm flex items-center space-x-2">
-      <i class="fas fa-phone"></i>
-      <span>+212 6 60 75 88 60</span>
-    </p>
-  </div>
-</div>
-            </div>
-        </div>
-     <div  style="background-color:#394046" class=" px-4  w-full  justify-between items-center" style="; font-family: 'Poppins', sans-serif;">
-        <div  class="footer-theme-container   py-16 px-1 md:px-16" >
-<div class="w-full md:w-3/4 mx-auto text-white grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-
-  <!-- Sections (à gauche) -->
-  <div class="flex flex-col items-start space-y-2">
-      <a href="/?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.home }}</a>
-      <a href="/catalogue?lang={{ lang }}&page=1&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.selection }}</a>
-      <a href="/about-us?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.about }}</a>
-      <a href="/faqs?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.faq }}</a>
-      <a href="/contact?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.contact }}</a>
-      <a href="/temoignage?lang={{ lang }}&devise={{ devise }}&token={{ token }}" class="text-md underline">{{ t.testimonials }}</a>
-  </div>
-
-  <!-- Logo centré -->
-  <div class="flex flex-col items-center space-y-4">
-    <img src="/media/static/images/logo_white.png" alt="Atlas Vox Logo" class="h-20 w-20 rounded-full object-contain">
-    <p class="font-semibold text-xl">Adiba Interiors</p>
-    <p class="text-sm">Casablanca, Morocco</p>
-    <div class="flex space-x-4">
-      <a href="" target="_blank"><i class="fab fa-facebook fa-md"></i></a>
-      <a href="" target="_blank"><i class="fab fa-instagram fa-md"></i></a>
-      <a href="" target="_blank"><i class="fab fa-tiktok fa-md"></i></a>
-      <a href="https://wa.me/+212660758860" class="relative text-gray-800 hover:text-gray-600 group">
-        <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M20.52 3.48A11.94 11.94 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.09 1.6 5.85L0 24l6.38-1.63A11.94 11.94 0 0012 24c6.63 0 12-5.37 12-12 0-3.2-1.25-6.2-3.48-8.52zM12 21.5a9.5 9.5 0 01-4.88-1.36l-.35-.22-3.79.97.99-3.7-.23-.37A9.5 9.5 0 1121.5 12 9.5 9.5 0 0112 21.5zm5.05-7.13c-.27-.14-1.6-.79-1.84-.88-.24-.09-.42-.14-.6.14s-.69.88-.85 1.06c-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.16-1.33-.8-.71-1.34-1.6-1.5-1.87-.16-.27-.02-.41.12-.55.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.6-1.44-.82-1.97-.22-.52-.44-.45-.6-.46-.16-.01-.34-.01-.52-.01s-.48.07-.73.34c-.25.27-.95.92-.95 2.25s.97 2.61 1.1 2.79c.14.18 1.9 2.9 4.62 4.07.65.28 1.16.45 1.56.58.65.21 1.24.18 1.7.11.52-.08 1.6-.65 1.83-1.28.23-.63.23-1.17.16-1.28-.07-.11-.27-.18-.57-.32z"/>
-        </svg>
-        <span class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2
-               bg-gray-800 text-white text-xs rounded px-2 py-1 opacity-0
-               group-hover:opacity-100 transition-opacity">
-           Whatsapp
-        </span>
-      </a>
-    </div>
-  </div>
-
-  <!-- (optionnel) une 3e colonne si tu veux mettre autre chose -->
-  <div></div>
-
-</div>
-            </div>
-        </div>
-
-
-        <div id="signature" class="mt-2 text-center text-sm " style="color: black ;background-color:white">
-        <p>© 2025. Tous droits réservés.</p>
-        <p>Designé par <span  class="font-bold underline cursor-pointer"><a href="https://atlas-vox.com" target="_blank" rel="noopener noreferrer">
-            Atlas-Vox</a></span>.</p>
-         </div>
-    </footer>
+</footer>
