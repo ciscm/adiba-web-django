@@ -22,7 +22,7 @@
       "intro": "Découvrez toutes nos offres exclusives et profitez de réductions exceptionnelles sur une sélection de produits. Ne manquez pas l’occasion de faire de bonnes affaires avant la fin des promotions !"
     },
     "page_catalogue" : {
-      "title" : "Nos Selections",
+      "title" : "Selections",
       "intro" : "Mobilier sur mesure, décoration raffinée, art de recevoir : le savoir-faire marocain dans chaque détail\n",
       "btn_voir_selection" : "Voir la selection"
     },
@@ -50,16 +50,16 @@
       "btn_ajouter" : "Ajouter"
     },
     "page_all_sous_selection" : {
-      "title" : "Nos  Selections"
+      "title" : "Selections"
     },
     "page_selection" : {
-      "title" : "Nos  Selections",
+      "title" : "Selections",
       "btn_voir_sous_selection" : "Voir la  selection",
       "btn_voir_all_sous_selections" : " Toutes les selections",
       "btn_ajouter" : "Ajouter au Panier"
     },
     "page_all_selections" : {
-      "title" : "Nos Selections",
+      "title" : "Selections",
       "intro" : "Mobilier sur mesure, décoration raffinée, art de recevoir : le savoir-faire marocain dans chaque détail\n"
     },
     "page_temoignage" : {
@@ -152,7 +152,7 @@
       "placeholder": "Search for an item, a collection, or a sub-collection"
     },
     "page_all_sous_selection" : {
-      "title" : "Our  Selections"
+      "title" : "Selections"
     },
     "page_all_promotions": {
       "title": "Our Promotions",
@@ -220,12 +220,12 @@
       "btn": "Back to Home"
     },
     "page_catalogue" : {
-      "title" : "Our Selections",
+      "title" : "Selections",
       "intro" : "Custom furniture, refined decoration, tableware: Moroccan craftsmanship in every detail",
       "btn_voir_selection" : "Show selection"
     },
     "page_selection" : {
-      "title" : "Our  Selections",
+      "title" : "Selections",
       "btn_voir_sous_selection" : "Show  Selection",
       "btn_voir_all_sous_selections" : "All  Selections",
       "btn_ajouter" : "Add To Cart"
@@ -254,7 +254,7 @@
       "btn_ajouter" : "Add"
     },
     "page_all_selections": {
-      "title": "Our Selections",
+      "title": "Selections",
       "intro": "Custom furniture, refined decoration, tableware: Moroccan craftsmanship in every detail\n"
     },
     "page_recherche" : {
