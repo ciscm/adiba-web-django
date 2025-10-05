@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    {% include 'link.html' %}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Store",
+      "name": "Adiba Interiors",
+      "description": "Bienvenue Chez Adiba Interiors",
+      "alternateName": "Adiba Interiors",
+      "url": "{{ request.build_absolute_uri }}"
+    }
+    </script>
+</head>
+<body>
+<div id="contenaire-parent" class="w-full mx-auto shadow-lg" style="background-color:#EDE8E8">
+    <header id="en-tete" class="sticky top-0 z-50">
+        {% include 'entete.html'%}
+    </header>
+
+    <main class="flex flex-col gap-0 grow items-center justify-center px-4"
+        style="font-family: 'Poppins', sans-serif;">
+        <div class="flex flex-col items-center justify-center gap-10 my-10 w-full grow">
+                    {% include 'messages.html' %}
+            <main class="max-w-6xl mx-auto p-6 bg-gray-50 min-h-screen">
+
+    <h1 class="text-3xl md:text-4xl font-extrabold text-center text-gray-900 mb-12">
+        {{ t.page_panier.recap.titre|default:"Récapitulatif de votre commande" }}
+    </h1>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
+        <!-- ✅ Colonne gauche : Panier / Produits -->
+        <section class="bg-white shadow-md rounded-3xl p-8">
+            <h2 class="text-xl font-semibold text-gray-800 mb-6">{{ t.page_panier.recap.produits }}</h2>
+
+            {% if commande.items_sous_categorie.all or commande.items_promotion.all %}
+            <div class="divide-y divide-gray-200">
+                {% for item in commande.items_sous_categorie.all %}
+                <div class="flex items-center justify-between py-4">
+                    <div>
+                        <p class="font-medium text-gray-900">{{ item.produit.produit.nom_produit }}</p>
+                        <p class="text-sm text-gray-500">x{{ item.quantite }}</p>
+                    </div>
+                    <p class="font-semibold text-gray-800">{{ item.total }} {{ devise|upper }}</p>
+                </div>
+                {% endfor %}
+
+                {% for item in commande.items_promotion.all %}
+                <div class="flex items-center justify-between py-4">
+                    <div>
+                        <p class="font-medium text-gray-900">{{ item.produit.produit.nom_produit }}</p>
+                        <p class="text-sm text-gray-500">x{{ item.quantite }}</p>
+                    </div>
+                    <p class="font-semibold text-green-600">{{ item.total }} {{ devise|upper }}</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% else %}
+            <p class="text-gray-500 text-center py-6">
+                {{ t.page_panier.recap.vide }}
+            </p>
+            {% endif %}
+        </section>
+
+        <!-- ✅ Colonne droite : Récap et total -->
+        <section class="bg-white shadow-md rounded-3xl p-8 flex flex-col justify-between">
+
+            <!-- Infos commande -->
+            <div class="mb-8">
+                <h2 class="text-xl font-semibold text-gray-800 mb-6">{{ t.page_panier.recap.details|default:"Détails de la commande" }}</h2>
+                <div class="grid grid-cols-1 gap-4 text-gray-700 text-sm">
+                    <p><span class="font-medium">{{ t.page_panier.recap.reference|default:"Référence" }}:</span> {{ commande.reference }}</p>
+                    <p><span class="font-medium">{{ t.page_panier.recap.client|default:"Client" }}:</span> {{ commande.client.nom_complet }}</p>
+                    <p><span class="font-medium">{{ t.page_panier.recap.contact|default:"Contact" }}:</span> {{ commande.client.email }} / {{ commande.client.numero_telephone }}</p>
+                    <p><span class="font-medium">{{ t.page_panier.recap.type|default:"Type de client" }}:</span> {{ commande.client.get_type_client_display }}</p>
+                    <p><span class="font-medium">{{ t.page_panier.recap.date|default:"Date" }}:</span> {{ commande.date|date:"d/m/Y H:i" }}</p>
+                    <p><span class="font-medium">{{ t.page_panier.recap.paiement|default:"Paiement" }}:</span> {{ commande.get_type_paiement_display }}</p>
+                    <p>
+                        <span class="font-medium">{{ t.page_panier.recap.statut|default:"Statut" }}:</span>
+                        {% if commande.get_statut_display == "Validée" %}
+                            <span class="inline-block px-3 py-1 rounded-full bg-green-100 text-green-800 text-sm font-semibold">{{ commande.get_statut_display }}</span>
+                        {% elif commande.get_statut_display == "Rejetée" %}
+                            <span class="inline-block px-3 py-1 rounded-full bg-red-100 text-red-800 text-sm font-semibold">{{ commande.get_statut_display }}</span>
+                        {% else %}
+                            <span class="inline-block px-3 py-1 rounded-full bg-yellow-100 text-yellow-800 text-sm font-semibold">{{ commande.get_statut_display }}</span>
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+
+            <!-- Total -->
+            <div class="bg-yellow-50 border border-yellow-200 rounded-2xl p-6 text-center mb-6">
+                <h2 class="text-2xl font-bold mb-3 text-gray-900">{{ t.page_panier.recap.total|default:"Total de la commande" }}</h2>
+                <p class="text-3xl font-extrabold text-yellow-800">{{ commande.total_commande }} {{ devise|upper }}</p>
+            </div>
+
+            <div class="text-center mt-4">
+
+    <a href="https://wa.me/+212660758860?text={{ whatsapp_msg }}"
+       target="_blank"
+       class="inline-block bg-green-500 text-white px-8 py-3 rounded-full shadow-lg hover:bg-green-600 transition transform hover:scale-105">
+        {{ t.page_panier.recap.whatsapp|default:"Envoyer sur WhatsApp" }}
+    </a>
+</div>
+            <br>
+
+            <!-- Bouton retour -->
+            <div class="text-center">
+                <a href="/"
+                   class="inline-block bg-black text-white px-10 py-4 rounded-full shadow-xl hover:bg-gray-900 transition transform hover:scale-105">
+                   {{ t.page_panier.recap.retour|default:"Retour à l'accueil" }}
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+</main>
+
+
+
+
+        </div>
+    </main>
+
+    {% include 'footer.html' %}
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</body>
+</html>

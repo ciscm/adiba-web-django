@@ -83,20 +83,40 @@
       ],
       "conclusion": "Adiba Interiors, le savoir-faire dans chaque détail"
     },
-    "page_panier" : {
-      "title" : "Panier",
-      "btn_continuez" : "Continuez",
-       "accept_terme" : "Accepter les termes d'utilisation",
-      "formulaire" : {
-        "title" : "Remplissez vos informations",
-        "intro" : "Veuillez compléter les champs ci-dessous pour finaliser votre commande et procéder au paiement.",
-        "name" : "Nom Complet",
-        "phone" : "Numéro de téléphone",
-        "preference" : "Préférence de contact",
-        "type" : "Type de client",
-        "btn" : "Valider"
-      }
-    },
+    "page_panier": {
+  "title": "Panier",
+  "btn_continuez": "Continuez",
+  "accept_terme": "Accepter les termes d'utilisation",
+  "formulaire": {
+    "title": "Remplissez vos informations",
+    "intro": "Veuillez compléter les champs ci-dessous pour finaliser votre commande et procéder au paiement.",
+    "name": "Nom Complet",
+    "phone": "Numéro de téléphone",
+    "preference": "Préférence de contact",
+    "type": "Type de client",
+    "btn": "Valider",
+    "payment": "Mode de paiement",
+    "espece": "Espèces",
+    "virement": "Virement Bancaire",
+    "autre": "Autres"
+  },
+  "recap": {
+    "titre": "Récapitulatif de votre commande",
+    "details": "Détails de la commande",
+    "reference": "Référence",
+    "client": "Client",
+    "contact": "Contact",
+    "type": "Type de client",
+    "date": "Date",
+    "paiement": "Paiement",
+    "statut": "Statut",
+    "produits": "Produits commandés",
+    "total": "Total de la commande",
+    "vide": "Aucun produit dans cette commande.",
+    "retour": "Retour à l'accueil"
+  }
+}
+,
     "page_recherche" : {
   "title" : "Trouvez exactement ce que vous cherchez",
   "categorie" : {
@@ -177,20 +197,40 @@
       "desc": "Custom furniture, refined decoration, art of hosting: Moroccan craftsmanship in every detail",
       "btn": "See All Selections"
     },
-    "page_panier" : {
-      "title" : "Cart",
-      "btn_continuez" : "Continue",
-      "accept_terme" : "Accept the Terms of Use",
-      "formulaire" : {
-          "title" : "Fill in your information",
-          "intro" : "Please complete the fields below to finalize your order and proceed to payment.",
-          "name" : "Full Name",
-          "phone" : "Phone Number",
-          "preference" : "Contact Preference",
-          "type" : "Customer Type",
-          "btn" : "Submit"
-      }
-    },
+    "page_panier": {
+  "title": "Cart",
+  "btn_continuez": "Continue",
+  "accept_terme": "Accept terms of use",
+  "formulaire": {
+    "title": "Fill in your information",
+    "intro": "Please complete the fields below to finalize your order and proceed to payment.",
+    "name": "Full Name",
+    "phone": "Phone Number",
+    "preference": "Contact Preference",
+    "type": "Customer Type",
+    "btn": "Submit",
+    "payment": "Payment Method",
+    "espece": "Cash",
+    "virement": "Bank Transfer",
+    "autre": "Other"
+  },
+  "recap": {
+    "titre": "Order Summary",
+    "details": "Order Details",
+    "reference": "Reference",
+    "client": "Customer",
+    "contact": "Contact",
+    "type": "Customer Type",
+    "date": "Date",
+    "paiement": "Payment",
+    "statut": "Status",
+    "produits": "Ordered Products",
+    "total": "Total Order Amount",
+    "vide": "No products in this order.",
+    "retour": "Back to Home"
+  }
+}
+,
 
     "page_aboutus": {
       "title": "Adiba Interiors – A Moroccan soul, a timeless signature",
