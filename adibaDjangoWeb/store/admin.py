@@ -16,32 +16,14 @@ class ProduitSousCategorieInline(admin.TabularInline):
     extra = 1  # Nombre de lignes vides pour ajouter des produits
     autocomplete_fields = ['produit']  # Permet une recherche facile des produits
     max_num = 50
+from django.db.models import Q
+
 class ProduitPromotionInline(admin.TabularInline):
     model = ProduitAvecPromotion
-    extra = 1  # Nombre de lignes vides pour ajouter des produits
-    autocomplete_fields = ['produit']  # Permet une recherche facile des produits
+    extra = 1
+    autocomplete_fields = ['produit']
     raw_id_fields = ['produit']
     max_num = 20
-
-
-@admin.register(Categorie)
-class CategorieAdmin(admin.ModelAdmin):
-    fieldsets = (
-        ('Français', {
-            'fields': ('nom', 'description', 'image')
-        }),
-        ('English', {
-            'fields': ('nom_english', 'description_english')
-        }),
-        ('Autres informations', {
-            'fields': ( 'archive',),
-        }),
-    )
-
-    readonly_fields = ('nb_sous_categorie', 'nb_produits', 'date')
-    list_display = ('nom', 'nom_english', 'nb_sous_categorie', 'nb_produits', 'archive')
-    list_filter = ('archive',)
-    search_fields = ('nom', 'nom_english', 'description', 'description_english')
 
 
 class PromotionAdmin(admin.ModelAdmin):
@@ -77,6 +59,28 @@ class PromotionAdmin(admin.ModelAdmin):
         return "Pas d'image"
 
     display_image.short_description = 'Aperçu'
+
+
+
+
+@admin.register(Categorie)
+class CategorieAdmin(admin.ModelAdmin):
+    fieldsets = (
+        ('Français', {
+            'fields': ('nom', 'description', 'image')
+        }),
+        ('English', {
+            'fields': ('nom_english', 'description_english')
+        }),
+        ('Autres informations', {
+            'fields': ( 'archive',),
+        }),
+    )
+
+    readonly_fields = ('nb_sous_categorie', 'nb_produits', 'date')
+    list_display = ('nom', 'nom_english', 'nb_sous_categorie', 'nb_produits', 'archive')
+    list_filter = ('archive',)
+    search_fields = ('nom', 'nom_english', 'description', 'description_english')
 
 
 
@@ -240,8 +244,83 @@ class SousCategorieAdmin(admin.ModelAdmin):
     list_filter = ('archive','categorie')
     search_fields = ('nom', 'nom_english', 'description', 'description_english')
     inlines = [ProduitSousCategorieInline]
+class ClientAdmin(admin.ModelAdmin):
+    list_display = ['nom_complet','email','numero_telephone','preference_contact','type_client','nb_commandes','date']
+    search_fields = ('nom_complet','email')
+    list_filter = ['preference_contact','type_client','nb_commandes']
+    date_hierarchy = 'date'
+
+    def has_add_permission(self, request):
+        return False
+
+    # Si tu veux aussi empêcher la modification, désactive la fonction suivante
+    def has_change_permission(self, request, obj=None):
+        return False  # Autoriser la modification si nécessaire
+
+    # Si tu veux aussi permettre la suppression, laisse cette fonction comme elle est
+    def has_delete_permission(self, request, obj=None):
+        return False
+class ItemPromotionCommandeInline(admin.TabularInline):
+    model = ItemPromotionCommande
+    extra = 1  # Nombre de formulaires vides à afficher
+    can_delete = False
+    max_num = 0
+    readonly_fields = ('produit', 'quantite', 'prix_unitaire','total')
+
+class ItemSousCategorieCommandeInline(admin.TabularInline):
+    model = ItemSousCategorieCommande
+    extra = 1  # Nombre de formulaires vides à afficher
+    can_delete = False
+    max_num = 0
+    readonly_fields = ('produit', 'quantite', 'prix_unitaire','total')
+
+class CommandeAdmin(admin.ModelAdmin):
+    list_display = ['reference','client', 'date', 'statut', 'etat_paiement', 'total_commande']
+    search_fields = ['reference']
+    list_filter = ['client','statut', 'etat_paiement','total_commande']
+    date_hierarchy = 'date'
+    inlines = [ItemSousCategorieCommandeInline,ItemPromotionCommandeInline]
 
 
+
+    actions = ['valider_commande', 'rejeter_commande']
+
+    def valider_commande(self, request, queryset):
+        """Valide la commande sélectionnée."""
+        updated_count = queryset.update(statut='validee')
+        self.message_user(request, f"{updated_count} commandes validées.")
+
+    def rejeter_commande(self, request, queryset):
+        """Rejette la commande sélectionnée."""
+        updated_count = queryset.update(statut='rejetee')
+        self.message_user(request, f"{updated_count} commandes rejetées.")
+
+    def has_add_permission(self, request):
+        return False
+
+    # Si tu veux aussi empêcher la modification, désactive la fonction suivante
+    def has_change_permission(self, request, obj=None):
+        return True  # Autoriser la modification si nécessaire
+
+    # Si tu veux aussi permettre la suppression, laisse cette fonction comme elle est
+    def has_delete_permission(self, request, obj=None):
+        return True
+
+        # Permettre la modification des champs statut et etat_paiement
+
+    def get_readonly_fields(self, request, obj=None):
+        # Rendre tous les champs en lecture seule, sauf statut et etat_paiement
+        if obj:
+            return [field.name for field in self.model._meta.fields if field.name not in ['statut', 'etat_paiement']]
+        return []
+
+    valider_commande.short_description = "Valider les commandes sélectionnées"
+    rejeter_commande.short_description = "Rejeter les commandes sélectionnées"
+
+
+
+admin.site.register(Client, ClientAdmin)
+admin.site.register(Commande, CommandeAdmin)
 
 
 admin.site.register(Fournisseur, FournisseurAdmin)

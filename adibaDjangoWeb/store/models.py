@@ -85,9 +85,12 @@ class Produit(models.Model):
         return self.nom_produit
 
     def save(self, *args, **kwargs):
-        # Si la référence n'est pas déjà définie, générez-en une
         if not self.reference:
-            self.reference = uuid.uuid4().hex[:8]  # Générer une référence unique
+            while True:
+                ref = uuid.uuid4().hex[:8].upper()
+                if not Produit.objects.filter(reference=ref).exists():
+                    self.reference = ref
+                    break
         super().save(*args, **kwargs)
 class ProduitAvecSousCategorie(models.Model):
     produit = models.ForeignKey(Produit,on_delete=models.CASCADE)
@@ -96,12 +99,18 @@ class ProduitAvecSousCategorie(models.Model):
         verbose_name = "Produit avec Sous-catégorie"
         verbose_name_plural = "Produits avec Sous-catégorie"
 
+    def __str__(self):
+        return self.produit.nom_produit
+
 class ProduitAvecPromotion(models.Model):
     produit = models.ForeignKey(Produit, on_delete=models.CASCADE,related_name='produit_prt')
     promotion = models.ForeignKey(Promotion, on_delete=models.SET_NULL,null=True)
     class Meta:
         verbose_name = "Produit en Promotion"
         verbose_name_plural = "Produits en Promotion"
+
+    def __str__(self):
+        return self.produit.nom_produit
 
 class ProduitComplementaire(models.Model):
     produit = models.ForeignKey(Produit, related_name='complementaires', on_delete=models.CASCADE)
@@ -284,3 +293,79 @@ class ItemPromotionPanier(models.Model):
     produit = models.ForeignKey(ProduitAvecPromotion, on_delete=models.DO_NOTHING)
     quantite = models.PositiveIntegerField(default=1)
 
+class Client(models.Model):
+    email = models.EmailField(max_length=254)  # Clé unique pour l'email
+    nom_complet = models.CharField(max_length=100)
+    numero_telephone = models.CharField(max_length=15)
+    preference_contact = models.CharField(max_length=50,choices=preference_c)
+    nb_commandes = models.IntegerField(default= 0)
+    type_client = models.CharField(max_length=50,choices=type_client_ou_fournisseur)
+    date = models.DateField(auto_now_add=True)
+    def __str__(self):
+        return self.nom_complet
+
+
+class Commande(models.Model):
+    reference = models.CharField(max_length=8, primary_key=True, unique=True, editable=False)
+    client = models.ForeignKey(Client,on_delete=models.DO_NOTHING, null=True, blank=True)
+    date = models.DateTimeField(auto_now_add=True)
+    preference_contact = models.CharField(max_length=17,choices=preference_c,default='email')
+    statut = models.CharField(max_length=20, choices=[
+        ('en_attente', 'En Attente'),
+        ('validee', 'Validée'),
+        ('rejettee', 'Rejetée'),
+    ],default='en_attente')
+    etat_paiement = models.CharField(max_length=25, choices=[
+        ('pa', 'Payé'),
+        ('im', 'Impayé'),
+        ('at', 'En Attente de Confirmation'),
+    ],default='im')
+    type_paiement = models.CharField(max_length=25, choices=[
+        ('autre', 'Autres'),
+        ('virement', 'Par Virement Bancaire'),
+        ('espece', 'Especes'),
+    ],default='espece')
+    total_commande = models.DecimalField(max_digits=10, decimal_places=2)
+    nb_produits = models.IntegerField(default=0)
+    def __str__(self):
+        return self.reference
+
+    def save(self, *args, **kwargs):
+        if not self.reference:
+            while True:
+                ref = uuid.uuid4().hex[:8].upper()
+                if not Commande.objects.filter(reference=ref).exists():
+                    self.reference = ref
+                    break
+        super().save(*args, **kwargs)
+
+
+
+class ItemSousCategorieCommande(models.Model):
+    commande = models.ForeignKey(Commande, related_name='items_sous_categorie', on_delete=models.CASCADE)
+    produit = models.ForeignKey(ProduitAvecSousCategorie, on_delete=models.DO_NOTHING)
+    quantite = models.PositiveIntegerField(default=1)
+    prix_unitaire = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2,default=0)
+
+    def save(self, *args, **kwargs):
+        # aller chercher le prix en DHS depuis ton objet produit
+        # calculer le total
+        self.total = self.prix_unitaire * self.quantite
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return self.produit.produit.nom_produit
+
+class ItemPromotionCommande(models.Model):
+    commande = models.ForeignKey(Commande, related_name='items_promotion', on_delete=models.CASCADE)
+    produit = models.ForeignKey(ProduitAvecPromotion, on_delete=models.DO_NOTHING)
+    quantite = models.PositiveIntegerField(default=1)
+    prix_unitaire = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2,default=0)
+
+    def save(self, *args, **kwargs):
+        self.total = self.quantite * self.prix_unitaire
+        super().save(*args, **kwargs)
+    def __str__(self):
+        return self.produit.__str__()
