@@ -30,11 +30,20 @@
 {% endif %}
 
 <script>
-  // Faire disparaître après 5 secondes avec effet fade
-  setTimeout(() => {
-      document.querySelectorAll('#notif-container .notif').forEach(el => {
-          el.classList.add('opacity-0', 'translate-y-2');
-          setTimeout(() => el.remove(), 500);
-      });
-  }, 5000);
+  // Sélectionne toutes les notifications
+  const notifications = document.querySelectorAll('#notif-container .notif');
+
+  // Fonction pour supprimer une notification avec effet
+  function removeNotif(el) {
+    el.classList.add('opacity-0', 'translate-y-2');
+    setTimeout(() => el.remove(), 300); // on attend la fin de la transition
+  }
+
+  // Disparition automatique après 5 secondes
+  notifications.forEach(el => {
+    setTimeout(() => removeNotif(el), 5000);
+
+    // Disparition au clic
+    el.addEventListener('click', () => removeNotif(el));
+  });
 </script>
