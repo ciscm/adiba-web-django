@@ -120,10 +120,6 @@
                                 <br>
                                 <span class="text-gray-800 font-bold text-center">{{ produit_s.prix }}</span>
                                 <br>
-                                <span><a href="#"
-                                    class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
-                                    {{ t.page_selection.btn_ajouter }}
-                                </a></span>
 
                             </div>
                     {% empty %}
@@ -141,7 +137,7 @@
                 <p class="text-lg text-left mb-4 md:mb-10 md:order-2">
                     {{ t.page_produit.complementaire.desc }}
                 </p>
-
+    //test
                 <div class="flex flex-wrap justify-center gap-6 w-full max-w-7xl mx-auto">
                         {% for produit_s in produit.produits_complementaires %}
                             <div class="bg-white rounded-xl  border shadow-lg hover:shadow-2xl overflow-hidden flex flex-col items-center
@@ -156,10 +152,7 @@
                                 <br>
                                 <span class="text-gray-800 font-bold text-center">{{ produit_s.prix }}</span>
                                 <br>
-                                <span><a href="#"
-                                    class="bg-black text-white px-4 py-2 rounded-full shadow-lg hover:bg-gray-800">
-                                    {{ t.page_selection.btn_ajouter }}
-                                </a></span>
+
 
                             </div>
                         {% empty %}

@@ -21,6 +21,7 @@ urlpatterns = [
     path("panier/add",addToPanier,name="addToPanier"),
     path("panier", panier, name="panier"),
     path("panier/checkout", checkout, name="checkout"),
+    path("panier/valider",valider,name="valider"),
     path("panier/desincremente",decrementPanier),
     path("search",search)
 
