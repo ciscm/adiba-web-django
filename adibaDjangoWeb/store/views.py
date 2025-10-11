@@ -56,7 +56,7 @@ def index(request):
     with open(file_path, "r", encoding="utf-8") as f:
         all_translations = json.load(f)
     footer = getFooter()
-    categories_qs = Categorie.objects.filter(archive=False)
+    categories_qs = Categorie.objects.filter(archive=False)[0:4]
 
     # Construire la liste avec le nom selon la langue
     categories = []
